@@ -1,0 +1,30 @@
+@mixin button-line-style($severity) {
+    &.p-button-#{$severity} {
+        color: var(--#{$severity});
+
+        &:hover,
+        &:active {
+            color: var(--#{$severity}-hover);
+        }
+    }
+}
+
+p-button.p-element {
+    .p-button-link {
+        background: none !important;
+
+        span {
+            font-weight: 400;
+
+            &.pi {
+                margin-right: 4px;
+            }
+        }
+
+        @include button-line-style(primary);
+        @include button-line-style(success);
+        @include button-line-style(info);
+        @include button-line-style(warning);
+        @include button-line-style(danger);
+    }
+}

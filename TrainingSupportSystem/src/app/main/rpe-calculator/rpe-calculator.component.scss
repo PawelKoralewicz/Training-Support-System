@@ -1,0 +1,52 @@
+@import "/src/assets/theme/variables.scss";
+
+.rpe-calculator-container {
+    height: 100%;
+    width: 100%;
+    // border-radius: 10px;
+
+    .rpe-calculator {
+        display: flex;
+        column-gap: 10px;
+        height: calc(100% - 30px);
+        width: inherit;
+        padding: 10px;
+        padding-top: 0;
+
+        .calculator,
+        .calculation-output {
+            box-shadow: $window-shadow;
+            // background: linear-gradient(45deg, #8e0e00, $second-color);
+            // box-shadow: 0px 0px 3px 1px #25252555;
+            height: 100%;
+            border-radius: $basic-radius;
+            padding: 15px;
+        }
+
+        .calculator {
+            width: 25%;
+
+            form {
+                ::ng-deep {
+                    formly-form {
+                        formly-group {
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 15px;
+                        }
+
+                    }
+                }
+
+                .submit-button {
+                    margin-top: 15px;
+                    text-align: center;
+                }
+            }
+        }
+
+        .calculation-output {
+            width: 75%;
+        }
+    }
+}

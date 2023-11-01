@@ -1,0 +1,36 @@
+p-dropdown {
+    .p-dropdown {
+        width: 100%;
+        background: transparent;
+        
+        &.p-focus {
+            box-shadow: none !important;
+        }
+
+        .p-dropdown-trigger {
+            width: min-content;
+            margin-right: 5px;
+        }
+
+        .p-dropdown-clear-icon {
+            right: 25px;
+        }
+
+        p-overlay {
+            .p-dropdown-items {
+                padding: 0;
+                
+                p-dropdownitem {
+                li.p-dropdown-item {
+                    white-space: break-spaces;
+                }
+                &:nth-child(even) {
+                    li.p-dropdown-item {
+                        background: #8e0e0030;
+                    }
+                }
+                }
+            }
+        }
+    }
+}

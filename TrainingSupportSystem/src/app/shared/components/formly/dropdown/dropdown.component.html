@@ -1,0 +1,9 @@
+<label>{{ to.label }} {{ to.required ? " *" : null }}</label>
+<p-dropdown
+  [options]="getOptions()"
+  [formControl]="formControl"
+  [optionValue]="to['optionValue'] ? to['optionValue'] : 'value'"
+  [optionLabel]="to['optionLabel'] ? to['optionLabel'] : 'label'"
+  [showClear]="to['showClear'] === false ? to['showClear'] : true"
+  [placeholder]="to['placeholder'] ? to['placeholder'] : 'Select option'"
+></p-dropdown>

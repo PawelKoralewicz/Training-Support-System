@@ -1,0 +1,17 @@
+<div class="diet-calculator-container">
+    <app-breadcrumb [model]="breadcrumbModel"></app-breadcrumb>
+    <div class="personal-form-container">
+        <form>
+            <formly-form [form]="form" [fields]="fields" [options]="options" [model]="model"></formly-form>
+            <div class="submit-button">
+                <app-button [label]="'Calculate'" [severity]="'success'" (click)="calculate()"></app-button>
+            </div>
+        </form>
+    </div>
+    <div class="calculation-result">
+        <div class="chart">
+            <!-- <p-chart #caloricChart height="fit-content" width="fit-content"></p-chart> -->
+            <canvas #caloricChart></canvas>
+        </div>
+    </div>
+</div>

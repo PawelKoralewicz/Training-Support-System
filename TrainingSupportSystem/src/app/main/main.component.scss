@@ -1,0 +1,40 @@
+@import "/src/assets/theme/variables.scss";
+
+.main-container {
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+
+    .main {
+        height: inherit;
+        width: inherit;
+        background: $main-theme;
+        border-radius: 15px;
+        display: flex;
+        box-shadow: $main-shadow;
+    
+        .sidebar-container {
+            width: min-content;
+        }
+        .main-content {
+            width: calc(100% - $sidebar-width-closed);
+            height: inherit;
+            padding: 10px;
+            padding-left: 0;
+            transition: width 0.2s ease-in-out;
+
+            .content {
+                height: 100%;
+                width: 100%;
+                border-radius: 10px;
+                background: #f8f9fe;
+            }
+        }
+
+        &:has(.sidebar.opened) {
+            .main-content {
+                width: calc(100% - $sidebar-width-opened);
+            }
+        }
+    }
+}

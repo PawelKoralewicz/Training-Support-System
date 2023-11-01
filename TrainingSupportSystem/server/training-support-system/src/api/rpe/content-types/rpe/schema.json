@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rpes",
+  "info": {
+    "singularName": "rpe",
+    "pluralName": "rpes",
+    "displayName": "RPE",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "benchTable": {
+      "type": "json"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "rpeCharts"
+    },
+    "squatTable": {
+      "type": "json"
+    },
+    "deadliftTable": {
+      "type": "json"
+    },
+    "squatFirst": {
+      "type": "integer"
+    },
+    "squatSecond": {
+      "type": "integer"
+    },
+    "benchFirst": {
+      "type": "integer"
+    },
+    "benchSecond": {
+      "type": "integer"
+    },
+    "deadliftFirst": {
+      "type": "integer"
+    },
+    "deadliftSecond": {
+      "type": "integer"
+    }
+  }
+}

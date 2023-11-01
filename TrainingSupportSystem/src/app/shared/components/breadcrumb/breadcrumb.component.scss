@@ -1,0 +1,8 @@
+@import "/src/assets/theme/variables.scss";
+
+.breadcrumb-container {
+    width: 100%;
+    height: $breadcrumb-height;
+    display: flex;
+    justify-content: space-between;
+}

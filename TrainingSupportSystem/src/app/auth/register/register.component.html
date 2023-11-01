@@ -1,0 +1,5 @@
+<form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+    <app-button (click)="canSubmit ? submit() : null" [label]="'Register'" [severity]="'success'" [disabled]="!canSubmit"></app-button>
+    <small>Already have an account? <a routerLink="/auth/login">Sign in</a></small>
+</form>

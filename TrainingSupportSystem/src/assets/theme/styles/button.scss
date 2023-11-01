@@ -1,0 +1,72 @@
+@import "src/assets/theme/variables.scss";
+
+@mixin button-style($severity) {
+    &.p-button-#{$severity} {
+        background: var(--#{$severity});
+
+        &:hover,
+        &:active {
+            background: var(--#{$severity}-hover);
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+p-button.p-element {
+    .p-button {
+        padding: 0.5rem 0.7rem;
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        &.p-button-primary {
+            background: $primary;
+
+            &:hover,
+            &:active {
+                background: $primary-hover;
+            }
+        }
+
+        &.p-button-success {
+            background: $success;
+
+            &:hover,
+            &:active {
+                background: $success-hover;
+            }
+        }
+
+        &.p-button-warning {
+            background: $warning;
+
+            &:hover,
+            &:active {
+                background: $warning-hover;
+            }
+        }
+
+        &.p-button-info {
+            background: $info;
+
+            &:hover,
+            &:active {
+                background: $info-hover;
+            }
+        }
+
+        @include button-style(primary);
+        @include button-style(success);
+        @include button-style(info);
+        @include button-style(warning);
+        @include button-style(danger);
+
+        span {
+            font-weight: 300;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+p-radiobutton {
+    .p-radiobutton.p-component {
+        .p-radiobutton-box {
+            background: transparent;
+            
+            &:hover {
+                border-width: 3px;
+                transition: .1s $radio-transition;
+            }
+
+            &.p-highlight, .p-focus {
+                box-shadow: none;
+                border-width: 6px;
+                transition: .1s $radio-transition;
+                
+                &:hover {
+                    background: none;
+                }
+
+                .p-radiobutton-icon {
+                    display: none;
+                }
+            }
+        }
+    }
+}

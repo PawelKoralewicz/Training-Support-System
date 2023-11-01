@@ -1,0 +1,12 @@
+@import "/src/assets/theme/variables.scss";
+.p-checkbox-box {
+    background: transparent;
+    
+    &.p-focus {
+        box-shadow: none !important;
+    }
+    &.p-highlight {
+        background: $primary !important;
+        border-color: $primary-hover !important;
+    }
+}

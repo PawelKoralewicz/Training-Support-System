@@ -1,0 +1,40 @@
+.p-input-icon-right {
+    width: 100%;
+
+    i,
+    .p-icon-wrapper {
+        right: 5px !important;
+    }
+
+    .p-inputtext {
+        padding-right: 23px !important;
+        width: 100%;
+        background: transparent;
+    }
+
+    i.pi-times,
+    i.pi-eye,
+    i.pi-eye-slash {
+        cursor: pointer;
+    }
+}
+
+.p-inputtext {
+    padding: 3px 5px;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    &[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+}

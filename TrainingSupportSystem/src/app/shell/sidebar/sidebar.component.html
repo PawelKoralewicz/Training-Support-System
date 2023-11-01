@@ -1,0 +1,18 @@
+<div class="sidebar" [class.opened]="sidebarOpened">
+  <div class="sidebar-trigger">
+    <div class="trigger" (click)="toggleSidebar()">
+        <span class="first-line"></span>
+        <span class="second-line"></span>
+        <span class="third-line"></span>
+    </div>
+    </div>
+  <div class="elements">
+    <div class="element" *ngFor="let el of sidebarElements" (click)="el.command ? el.command() : null" [routerLink]="el.routerLink" routerLinkActive="active-route">
+      <div class="icon-container">
+        <i [class]="el.icon"></i>
+        <fa-icon *ngIf="el.faIcon" [icon]="el.faIcon"></fa-icon>
+      </div>
+      <div class="label">{{ el.label }}</div>
+    </div>
+  </div>
+</div>

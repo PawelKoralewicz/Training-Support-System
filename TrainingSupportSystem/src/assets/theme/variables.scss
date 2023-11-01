@@ -1,0 +1,43 @@
+@import "./variables-light.scss";
+
+@mixin window-style($width) {
+    width: $width;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: $window-shadow;
+}
+
+$second-color: #1f1c18;
+$main-theme: linear-gradient(to right, #8e0e00, $second-color);
+$main-shadow: 1px 1px 11px 1px #252525;
+
+$window-shadow: inset 0px 0px 8px 3px #25252555;
+
+$basic-radius: 8px;
+
+$primary: var(--primary);
+$primary-hover: var(--primary-hover);
+
+$success: var(--success);
+$success-hover: var(--success-hover);
+
+$warning: var(--warning);
+$warning-hover: var(--warning-hover);
+
+$info: var(--info);
+$info-hover: var(--info-hover);
+
+$danger: var(--danger);
+$danger-hover: var(--danger-hover);
+
+$radio-transition: border-width ease-in-out;
+
+/* sidebar */
+$sidebar-width-closed: 50px;
+$sidebar-width-opened: 190px;
+$sidebar-font-color: #c6bfbf;
+// $sidebar-bckg: linear-gradient(to right, #3a6186, #89253e);
+// $sidebar-bckg: linear-gradient(to top, #00c6ff, #0072ff);
+$sidebar-shadow: -2px 0px 12px 5px rgba(25, 25, 25, 0.8);
+
+$breadcrumb-height: 30px;
