@@ -4,7 +4,8 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { dietCalculatorFormModel } from './data/diet-calculator-form.model';
 import { IDietCalculator } from './data/diet-calculator.interface';
 import { Chart } from 'chart.js';
-import { dietCalculatorBreadcrumb } from './data/diet-calculator.breadcrumb';
+import { dietCalculatorBreadcrumb, homeBreadcrumbDC } from './data/diet-calculator.breadcrumb';
+import { DietGeneratorService } from '../diet-generator.service';
 
 @Component({
   selector: 'app-diet-calculator',
@@ -21,13 +22,77 @@ export class DietCalculatorComponent implements OnInit {
   basalMetabolism!: number;
   totalMetabolism!: number;
   totalCaloricDemand!: number;
+  mode: "CREATE" | "EDIT" = "CREATE";
   macros: number[] = [];
+  cards: {title: string, amount?: number, desc: string, unit: string}[] = [];
   chart: any;
+  displayCards = false;
   breadcrumbModel = dietCalculatorBreadcrumb;
+  breadcrumbHome = homeBreadcrumbDC;
 
-  constructor() { }
+  constructor(private dietGeneratorService: DietGeneratorService) { }
 
   ngOnInit(): void {
+    this.dietGeneratorService.getMyPersonalInfo().subscribe({
+      next: (res) => {
+        if(res.personalInfo) {
+          this.mode = "EDIT";
+          const { gender, personalInfo, ...rest } = res;
+          delete personalInfo.createdAt;
+          delete personalInfo.updatedAt;
+          delete personalInfo.publishedAt;
+          delete personalInfo.totalCaloricDemand;
+          this.model = { gender, ...personalInfo };
+        }
+      },
+      complete: () => this.mode === "EDIT" ? this.calculate() : null
+    })
+    this.cards = [
+      { 
+        title: 'Basal Metabolism',
+        unit: 'kcal',
+        desc: 'You should NOT get below that value' 
+      },
+      {
+        title: 'Total Metabolism',
+        unit: 'kcal',
+        desc: 'Amount of calories to maintain weight'
+      },
+      {
+        title: 'Caloric Demand',
+        unit: 'kcal',
+        desc: 'Amount of calories you need to achieve your goal'
+      },
+      {
+        title: 'Water',
+        unit: 'L',
+        desc: 'Minimum amount of water you should drink'
+      }
+    ]
+  }
+
+  saveData() {
+    this.calculate();
+    const totalCaloricDemand = Math.floor(this.totalCaloricDemand);
+    const user = localStorage.getItem('userId') || sessionStorage.getItem('userId');
+    const { gender, ...restData } = this.model;
+    this.dietGeneratorService.savePersonalInfo({ ...restData, user, totalCaloricDemand }).subscribe();
+  }
+
+  updateData() {
+    this.calculate();
+    const totalCaloricDemand = Math.floor(this.totalCaloricDemand);
+    const { gender, id, ...restData } = this.model;
+    if(id) {
+      this.dietGeneratorService.updatePersonalInfo(id, {...restData, totalCaloricDemand}).subscribe();
+    }
+  }
+
+  assignCardsAmounts(weight: number) {
+    this.cards[0].amount = Math.floor(this.basalMetabolism);
+    this.cards[1].amount = Math.floor(this.totalMetabolism);
+    this.cards[2].amount = Math.floor(this.totalCaloricDemand);
+    this.cards[3].amount = weight * 0.02;
   }
 
   calculate() {
@@ -46,8 +111,9 @@ export class DietCalculatorComponent implements OnInit {
 
       this.totalCaloricDemand = this.caloricDemand(goal, this.totalMetabolism);
       this.macrosGoal(weight, gender, goal);
-      console.log(this.chartData.datasets);
       this.createChart();
+      this.assignCardsAmounts(weight);
+      this.displayCards = true;
     }
   }
 
@@ -86,7 +152,7 @@ export class DietCalculatorComponent implements OnInit {
   createChart() {
     const chartElement = this.caloricChart.nativeElement as HTMLCanvasElement;
     const ctx = chartElement.getContext('2d');
-    const text = `${Math.floor(this.totalCaloricDemand)} kcal`;
+    const text = `${Math.floor(this.totalCaloricDemand)}`;
     const protText = `Protein: ${this.macros[0] * 4} kcal`;
     const carbsText = `Carbs: ${this.macros[1] * 4} kcal`;
     const fatsText = `Fats: ${this.macros[2] * 9} kcal`;
@@ -101,10 +167,10 @@ export class DietCalculatorComponent implements OnInit {
         ctx.save();
         const x = chart.getDatasetMeta(0).data[0].x;
         const y = chart.getDatasetMeta(0).data[0].y;
-        ctx.font = 'bold 24px sans-serif';
+        ctx.font = 'bold 36px orbitron';
         ctx.textAlign = 'center';
-        ctx.fillText(text, x, y);
-        ctx.font = '12px sans-serif';
+        ctx.fillText(text, x, y - 25);
+        ctx.font = '12px orbitron';
         ctx.fillText(protText, x, y + 20);
         ctx.fillText(carbsText, x, y + 35);
         ctx.fillText(fatsText, x, y + 50);
@@ -125,7 +191,7 @@ export class DietCalculatorComponent implements OnInit {
         },
         options: {
           cutout: '75%',
-      responsive: false,
+      responsive: true,
       plugins: {
         tooltip: {
           callbacks: {
@@ -135,40 +201,13 @@ export class DietCalculatorComponent implements OnInit {
           }
         },
         legend: {
-          position: 'right',
+          position: 'bottom',
         },
       }
         },
         plugins: [centerText]
       })
       this.chart.update();
-    }
-  }
-
-  chartData = {
-    labels: ['Protein', 'Carbs', 'Fat'],
-    datasets: [
-      {
-        data: this.macros.map(mac => mac),
-        backgroundColor: ['blue', 'green', 'red'],
-      }
-    ],
-  }
-
-  chartOptions = {
-    cutout: '75%',
-    responsive: true,
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: function(context: any, ) {
-            context.formattedValue += ' g';
-          }
-        }
-      },
-      legend: {
-        position: 'right',
-      }
     }
   }
 }

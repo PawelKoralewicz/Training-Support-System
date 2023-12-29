@@ -1,0 +1,42 @@
+<div class="diet-plan-creator-container">
+    <div class="diet-plan-creator">
+        <div class="meal-selector">
+            <div class="dropdown">
+                <label>Select meal</label>
+                <p-dropdown [options]="meals" [group]="true" optionLabel="mealName" [(ngModel)]="meal">
+                    <ng-template let-group pTemplate="group">
+                        <div class="flex align-items-center">
+                            <span>{{ group.label }}</span>
+                        </div>
+                    </ng-template>
+                    <ng-template let-option pTemplate="item">
+                        <div class="flex align-items-center" pTooltip="{{ 'C: ' + option.carbs + '  P: ' + option.protein + '  F: ' + option.fats }}">
+                            <span>{{ option.mealName }}</span>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <app-button-line icon="pi pi-plus" label="Add meal" (click)="addMeal()"></app-button-line>
+            <ul *ngIf="selectedMeals.length">
+                <li>Calories: {{ totalCalories.calories }} kcal</li>
+                <li>Carbs: {{ totalCalories.carbs }} g</li>
+                <li>Protein: {{ totalCalories.protein }} g</li>
+                <li>Fats: {{ totalCalories.fats }} g</li>
+            </ul>
+        </div>
+        <div class="selected-meals">
+            <div class="meal" *ngFor="let meal of selectedMeals; let i = index">
+                <div class="meal-card" [pTooltip]="getTooltip(i)" [escape]="false" [autoHide]="false">
+                    <div class="meal-name">{{ meal.mealName }}</div>
+                    <ul>
+                        <li>Calories: {{ meal.calories }}</li>
+                        <li>Carbs: {{ meal.carbs }}</li>
+                        <li>Protein: {{ meal.protein }}</li>
+                        <li>Fats: {{ meal.fats }}</li>
+                    </ul>
+                </div>
+                <app-button-line icon="pi pi-times" severity="error" (click)="deleteMeal(i)"></app-button-line>
+            </div>
+        </div>
+    </div>
+</div>

@@ -26,10 +26,12 @@ export class SidebarComponent {
     {
       icon: Icon.CHART,
       label: 'My progress',
+      routerLink: 'progress-tracker'
     },
     {
       faIcon: faDumbbell,
       label: 'My training',
+      routerLink: 'training'
     },
     {
       faIcon: faBurger,

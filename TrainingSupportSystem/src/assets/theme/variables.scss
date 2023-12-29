@@ -7,8 +7,9 @@
     box-shadow: $window-shadow;
 }
 
+$main-color: #8e0e00;
 $second-color: #1f1c18;
-$main-theme: linear-gradient(to right, #8e0e00, $second-color);
+$main-theme: linear-gradient(to right, $main-color, $second-color);
 $main-shadow: 1px 1px 11px 1px #252525;
 
 $window-shadow: inset 0px 0px 8px 3px #25252555;

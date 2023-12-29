@@ -27,13 +27,13 @@
       "type": "integer"
     },
     "protein": {
-      "type": "integer"
+      "type": "decimal"
     },
     "carbs": {
-      "type": "integer"
+      "type": "decimal"
     },
     "fats": {
-      "type": "integer"
+      "type": "decimal"
     },
     "allergens": {
       "type": "json"

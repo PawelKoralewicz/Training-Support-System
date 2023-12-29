@@ -1,0 +1,7 @@
+<p-button
+[label]="to.label"
+[icon]="to['icon']"
+[styleClass]="'p-button-' + (to['severity'] ? to['severity'] : 'primary')"
+(click)="to['command'] && !to.disabled ? to['command']() : null"
+[disabled]="to.disabled ?? false"
+></p-button>

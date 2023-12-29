@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "personal_infos",
+  "info": {
+    "singularName": "personal-info",
+    "pluralName": "personal-infos",
+    "displayName": "Personal info",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "height": {
+      "type": "integer"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "activity": {
+      "type": "decimal"
+    },
+    "goal": {
+      "type": "enumeration",
+      "enum": [
+        "lose",
+        "maintain",
+        "gain"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "personalInfo"
+    },
+    "totalCaloricDemand": {
+      "type": "integer"
+    }
+  }
+}

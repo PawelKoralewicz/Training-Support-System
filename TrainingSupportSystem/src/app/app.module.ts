@@ -22,6 +22,9 @@ import { DropdownComponent } from './shared/components/formly/dropdown/dropdown.
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from './shared/services/toast.service';
+import { FormlyButtonComponent } from './shared/components/formly/formly-button/formly-button.component';
+import { InputNumberComponent } from './shared/components/formly/input-number/input-number.component';
+import { MultiselectComponent } from './shared/components/formly/multiselect/multiselect.component';
 
 @NgModule({
     declarations: [
@@ -38,16 +41,19 @@ import { ToastService } from './shared/services/toast.service';
         HttpClientModule,
         ToastModule,
         ReactiveFormsModule,
+        FormlyPrimeNGModule,
         FormlyModule.forRoot({
             types: [
                 { name: 'input', component: InputtextComponent },
                 { name: 'password', component: PasswordComponent },
                 { name: 'radios', component: RadioComponent },
-                { name: 'checkboxes', component: CheckboxComponent },
-                { name: 'dropdown', component: DropdownComponent }
+                { name: 'checkbox', component: CheckboxComponent },
+                { name: 'dropdown', component: DropdownComponent },
+                { name: 'button', component: FormlyButtonComponent },
+                { name: 'number', component: InputNumberComponent },
+                { name: 'multiselect', component: MultiselectComponent },
             ]
         }),
-        FormlyPrimeNGModule,
     ],
     providers: [
         MessageService,

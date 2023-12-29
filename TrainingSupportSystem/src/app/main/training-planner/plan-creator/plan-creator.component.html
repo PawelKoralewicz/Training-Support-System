@@ -1,0 +1,119 @@
+<p-contextMenu #cm [model]="contextMenuItems" (onShow)="cmItemsConfig()"></p-contextMenu>
+<div class="plan-creator-container">
+  <app-breadcrumb [home]="breadcrumbHome" [model]="breadcrumbModel">
+    <div class="action-buttons-save" *ngIf="!editingMode; else updateActionBtn">
+      <app-button-line [label]="userPermissions === permissionOpts.ADMIN ? 'Save for me' : 'Save'" icon="pi pi-save" severity="success" (click)="savePlanPrivate()"></app-button-line>
+      <app-button-line *ngIf="userPermissions === permissionOpts.ADMIN" label="Save for all" icon="pi pi-users" severity="success" (click)="savePlanGlobal()"></app-button-line>
+      <app-button-line *ngIf="userPermissions === permissionOpts.ADMIN && fromPlanGenerator" label="Update for all" icon="pi pi-users" severity="warning" (click)="updatePlanGlobal()"></app-button-line>
+    </div>
+    <ng-template #updateActionBtn>
+      <div class="action-buttons-update">
+        <app-button-line label="Update" icon="pi pi-save" severity="warning" (click)="updatePlanPrivate()"></app-button-line>
+      </div>
+    </ng-template>
+  </app-breadcrumb>
+  <div class="form-container">
+    <form>
+      <formly-form
+        [form]="form"
+        [model]="model"
+        [fields]="fields"
+        [options]="options"
+      ></formly-form>
+    </form>
+  </div>
+  <div id="tables-container">
+    <p-table
+      #trainingPlanTable
+      [columns]="columns"
+      [value]="tables.plan[displayedPage].days"
+      styleClass="p-datatable-gridlines p-datatable-sm"
+      [contextMenu]="cm"
+      [(contextMenuSelection)]="selectedExercise"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th [colSpan]="columns.length">
+            {{ "WEEK" + tables.plan[displayedPage].weekNumber }} <span *ngIf="tables.plan[this.displayedPage].isDeload">/ DELOAD</span>
+          </th>
+          <th pEditableColumn>
+            <span>Body weight:</span> 
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-inputNumber [(ngModel)]="tables.plan[displayedPage].bodyWeight"></p-inputNumber>
+              </ng-template>
+              <ng-template pTemplate="output">
+                <span>{{ tables.plan[displayedPage].bodyWeight }}</span>
+              </ng-template>
+            </p-cellEditor>
+          </th>
+        </tr>
+        <tr>
+          <th>Day 1</th>
+          <th *ngFor="let col of columns">{{ col.header }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-day>
+        <tr *ngIf="day.dayNumber !== 1" class="inside-header">
+          <td style="font-weight: 700; color: #343a40;
+          background: #f8f9fa;">{{ "Day " + day.dayNumber }}</td>
+          <td *ngFor="let col of columns" style="font-weight: 700; color: #343a40;
+          background: #f8f9fa;">{{ col.header }}</td>
+        </tr>
+        <ng-container *ngFor="let exercise of day.exercises; let ei = index">
+          <tr *ngFor="let set of exercise.sets; let si = index" [pContextMenuRow]="exercise">
+            <ng-container *ngIf="si === 0">
+              <td [attr.rowspan]="exercise.sets.length" style="border-width: 0 0 1px 1px;"></td>
+              <td [attr.rowspan]="exercise.sets.length" pEditableColumn style="border-width: 0 0 1px 1px;">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <!-- <p-dropdown [options]="exercises" [(ngModel)]="exercise.exerciseName" optionValue="attributes.exerciseName" optionLabel="attributes.exerciseName" [editable]="true" [filter]="true" appendTo="body"></p-dropdown> -->
+                        <p-autoComplete [(ngModel)]="exercise.exerciseName" [dropdown]="true" [suggestions]="filteredExercises" (completeMethod)="filterExercises($event)"></p-autoComplete>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ exercise.exerciseName }}
+                    </ng-template>
+                </p-cellEditor>    
+            </td>
+            </ng-container>
+            <ng-container *ngFor="let col of columns; let ci = index">
+                <td *ngIf="ci > 0 && col.field !== 'volume'" pEditableColumn>
+                    <ng-container [ngSwitch]="col.field">
+                        <p-cellEditor *ngIf="col.field !== 'setNumber'">
+                            <ng-template pTemplate="input">
+                                    <p-inputNumber *ngSwitchCase="'weight'" [(ngModel)]="set[col.field]"></p-inputNumber>                                
+                                    <p-inputNumber *ngSwitchCase="'reps'" [(ngModel)]="set[col.field]"></p-inputNumber>
+                                    <p-inputNumber *ngSwitchCase="'rest'" suffix="s" [(ngModel)]="set[col.field]"></p-inputNumber>
+                                    <p-inputNumber *ngSwitchCase="'oneRmPercent'" suffix="%" [(ngModel)]="set[col.field]"></p-inputNumber>
+                                    <input pInputText *ngSwitchCase="'comment'" [(ngModel)]="set[col.field]"/>
+                                    <input pInputText [(ngModel)]="set[col.field]" [minlength]="4" [maxlength]="4" [pKeyFilter]="tempoRegex" *ngSwitchCase="'tempo'"/>
+                                    <p-dropdown *ngSwitchCase="'rpe'" [options]="rpeValues" [(ngModel)]="set[col.field]" optionValue="label" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>                           
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ set[col.field] }}
+                                <span *ngSwitchCase="'rest'">
+                                  <span *ngIf="set[col.field]">s</span>
+                                </span>
+                                <span *ngSwitchCase="'oneRmPercent'">
+                                  <span *ngIf="set[col.field]">%</span>
+                                </span>
+                            </ng-template>
+                        </p-cellEditor>
+                        <span *ngSwitchCase="'setNumber'">
+                            <div class="set-cell">
+                                {{ 'Set ' + set[col.field] }}
+                            </div>
+                        </span>
+                    </ng-container>
+                </td>
+                <td *ngIf="col.field === 'volume' && si === 0" [attr.rowspan]="exercise.sets.length">
+                  {{ calculateVolume(exercise) }}
+                </td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </ng-template>
+    </p-table>
+  </div>
+  <p-paginator [first]="displayedPage" [rows]="1" [totalRecords]="tables.plan.length" (onPageChange)="onPageChange($event)"></p-paginator>
+</div>

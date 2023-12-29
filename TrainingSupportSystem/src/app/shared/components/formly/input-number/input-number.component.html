@@ -1,0 +1,1 @@
+<p-inputNumber [formControl]="formControl" [prefix]="to['prefix']" [suffix]="to['suffix']" [showButtons]="to['showButtons']" buttonLayout="horizontal" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="to['minValue']" [max]="to['maxValue']" (ngModelChange)="to['ngModelChange'] ? to['ngModelChange']($event) : null"></p-inputNumber>

@@ -1,0 +1,104 @@
+@mixin useEllipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.plan-creator-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    .form-container {
+        form {
+            ::ng-deep {
+                formly-form {
+                    formly-group.plan-creator-field-group {
+                        display: flex;
+                        justify-content: space-between;
+                        
+                        formly-group.plan-creator-fields {
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 10px;
+                            height: 100%;
+                            justify-content: space-evenly;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    #tables-container {
+        height: calc(100% - 94px - 60px - 20px);
+        overflow: auto;
+        ::ng-deep {
+            .p-datatable {
+                table {
+                    table-layout: fixed;
+                    min-width: 725px;
+
+                    .p-datatable-thead {
+                        tr {
+                            &:first-child {
+                                th {
+                                    border-bottom-width: 0px;
+                                    &:first-of-type {
+                                        text-align: center;
+                                    }
+
+                                    &:nth-of-type(2) {
+                                        display: flex;
+                                        @include useEllipsis;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                    }
+                                }
+                            }
+
+                            &:nth-child(2) {
+                                th {
+                                    &:not(:first-child) {
+                                        @include useEllipsis;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .p-datatable-tbody {
+                        tr.inside-header {
+                            td {
+                                text-align: left;
+                                padding: 0.5rem;
+                                border: 1px solid #dee2e6;
+                                border-width: 0 0 1px 0;
+                                font-weight: 700;
+                                color: #343a40;
+                                background: #f8f9fa;
+                                transition: box-shadow 0.2s;
+                                border-width: 0 0 1px 1px;
+    
+                                &:last-of-type {
+                                    border-right-width: 1px;
+                                }
+
+                                &:not(:first-child) {
+                                    @include useEllipsis;
+                                }
+                            }
+                        }
+
+                        .set-cell {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

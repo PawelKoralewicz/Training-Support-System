@@ -1,0 +1,9 @@
+.exercise-data-update {
+  ::ng-deep p-table {
+    .p-datatable .p-datatable-wrapper table.p-datatable-table {
+      table-layout: fixed;
+      min-width: 530px;
+      max-width: 700px;
+    }
+  }
+}

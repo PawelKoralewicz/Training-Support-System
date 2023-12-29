@@ -17,6 +17,25 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "jspdf-autotable",
+              "rgbcolor",
+              "raf",
+              "core-js/modules/web.dom-collections.iterator.js",
+              "core-js/modules/es.string.trim.js",
+              "core-js/modules/es.string.starts-with.js",
+              "core-js/modules/es.string.split.js",
+              "core-js/modules/es.string.match.js",
+              "core-js/modules/es.string.includes.js",
+              "core-js/modules/es.string.replace.js",
+              "core-js/modules/es.string.ends-with.js",
+              "core-js/modules/es.promise.js",
+              "core-js/modules/es.array.reverse.js",
+              "core-js/modules/es.array.reduce.js",
+              "core-js/modules/es.array.iterator.js",
+              "core-js/modules/es.array.index-of.js",
+              "core-js/modules/es.regexp.to-string.js"
+            ],
             "outputPath": "dist/training-support-system",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,6 +54,7 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
+              "src/assets/fonts/orbitron.scss",
               "src/styles.scss"
             ]
             

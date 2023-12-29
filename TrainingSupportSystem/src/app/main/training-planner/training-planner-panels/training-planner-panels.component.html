@@ -1,0 +1,13 @@
+<div class="training-module-panels-container">
+    <div class="training-module-panels">
+        <div class="panel" *ngFor="let panel of panels" (click)="panel.command ? panel.command() : null">
+            <img [src]="panel.icon" alt="">
+            <div class="panel-title">
+                {{ panel.label }}
+            </div>
+            <div class="panel-desc">
+                {{panel.desc}}
+            </div>
+        </div>
+    </div>
+</div>

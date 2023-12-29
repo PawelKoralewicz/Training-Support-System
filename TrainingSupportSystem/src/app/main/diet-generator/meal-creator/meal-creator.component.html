@@ -1,0 +1,46 @@
+<div class="meal-creator-container">
+  <app-breadcrumb [home]="homeBcrumb" [model]="breadcrumb">
+    <div class="save-buttons">
+      <app-button-line [label]="userPermissions === permissionOpts.ADMIN ? 'Save for me' : 'Save'" icon="pi pi-save" (click)="canSave ? saveMealPrivate() : null" [disabled]="!canSave"></app-button-line>
+      <app-button-line label="Save for all" icon="pi pi-users" *ngIf="userPermissions === permissionOpts.ADMIN" (click)="canSave ? saveMealGlobal() : null" [disabled]="!canSave"></app-button-line>
+    </div>
+  </app-breadcrumb>
+  <form>
+    <formly-form
+      [form]="form"
+      [model]="model"
+      [options]="options"
+      [fields]="fields"
+    ></formly-form>
+  </form>
+  <div class="meal">
+    <div class="meal-macros">
+        <ul>
+            <li>{{ model.calories + ' kcal' }}</li>
+            <li>{{ 'Carbs: ' + model.carbs + ' g' }}</li>
+            <li>{{ 'Protein: ' + model.protein + ' g' }}</li>
+            <li>{{ 'Fats: ' + model.fats + ' g' }}</li>
+        </ul>
+    </div>
+    <div class="ingredients">
+      <div class="ingredient" *ngFor="let ingredient of ingredients; let i = index">
+        <div class="ingredient-name">
+            {{ ingredient.name }}
+        </div>
+        <div class="portion-info">
+            <div class="input">
+              <p-inputNumber [min]="1" [(ngModel)]="ingredient.portion" name="portion" ngDefaultControl (onBlur)="ingredientAmountChange(i)"></p-inputNumber>
+              <span class="portioning">{{ ingredient.portioning }}</span>
+            </div>
+            <i class="pi pi-times" (click)="deleteIngredient(i)"></i>
+        </div>
+        <ul class="macros">
+            <li>{{ ingredient.calories + ' kcal'}}</li>
+            <li>Carbs: {{ ingredient.carbs + ' g' }}</li>
+            <li>Protein: {{ ingredient.protein + ' g' }}</li>
+            <li>Fats: {{ ingredient.fats + ' g' }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

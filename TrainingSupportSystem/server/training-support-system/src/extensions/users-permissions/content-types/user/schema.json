@@ -88,6 +88,32 @@
       "relation": "oneToOne",
       "target": "api::rpe.rpe",
       "mappedBy": "user"
+    },
+    "workoutPlans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::users-workout-plan.users-workout-plan",
+      "mappedBy": "user"
+    },
+    "permissions": {
+      "type": "enumeration",
+      "enum": [
+        "user",
+        "admin"
+      ],
+      "default": "user"
+    },
+    "personalInfo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::personal-info.personal-info",
+      "inversedBy": "user"
+    },
+    "meals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::users-meal.users-meal",
+      "mappedBy": "user"
     }
   }
 }

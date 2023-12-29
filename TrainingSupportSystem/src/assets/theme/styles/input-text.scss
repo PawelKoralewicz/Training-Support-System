@@ -21,6 +21,7 @@
 
 .p-inputtext {
     padding: 3px 5px;
+    width: 100%;
 
     &:focus {
         box-shadow: none !important;
@@ -36,5 +37,26 @@
     &[type=number] {
         -moz-appearance: textfield;
         appearance: textfield;
+    }
+}
+
+input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    &[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+}
+
+.p-inputnumber.p-inputnumber-buttons-horizontal {
+    .p-button-icon-only {
+        width: unset;
+        padding: 3px 5px;
     }
 }

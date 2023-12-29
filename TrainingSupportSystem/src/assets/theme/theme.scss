@@ -8,7 +8,8 @@
 @import "./styles/tabview.scss";
 
 * {
-    font-family: monospace;
+    // font-family: monospace;
+    font-family: 'Orbitron';
     font-size: 14px;
 }
 
@@ -20,4 +21,9 @@ body {
 
 label {
     display: block;
+}
+
+.p-tooltip {
+    width: max-content !important;
+    max-width: 350px;
 }

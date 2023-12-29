@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICharts } from './data/charts.interface';
+import { serverUrl } from 'src/app/shared/paths/server-path';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChartsCustomizatorService {
 
-  readonly url = 'http://localhost:1337/api/'
+  readonly url = serverUrl;
 
   constructor(private http: HttpClient) { }
 

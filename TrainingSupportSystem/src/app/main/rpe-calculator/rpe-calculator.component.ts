@@ -69,7 +69,7 @@ export class RpeCalculatorComponent implements OnInit {
     const weight = this.model.weight;
     const reps = this.model.reps;
     const rpe = this.model.rpe;
-    if (weight && reps && rpe) {
+    if (weight && reps && rpe !== undefined) {
       const percentage = table[rpe][reps - 1];
       const oneRm = weight / percentage;
       for (let i = 0; i <= 10; i++) {

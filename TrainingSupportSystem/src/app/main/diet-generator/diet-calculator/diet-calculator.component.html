@@ -1,5 +1,11 @@
 <div class="diet-calculator-container">
-    <app-breadcrumb [model]="breadcrumbModel"></app-breadcrumb>
+    <app-breadcrumb [home]="breadcrumbHome" [model]="breadcrumbModel">
+        <ng-container [ngSwitch]="mode">
+            <app-button-line label="Save" [severity]="'success'" icon="pi pi-save" (click)="saveData()" *ngSwitchCase="'CREATE'"></app-button-line>
+            <app-button-line label="Update" [severity]="'warning'" icon="pi pi-save" (click)="updateData()" *ngSwitchCase="'EDIT'"></app-button-line>
+            
+        </ng-container>
+    </app-breadcrumb>
     <div class="personal-form-container">
         <form>
             <formly-form [form]="form" [fields]="fields" [options]="options" [model]="model"></formly-form>
@@ -10,8 +16,15 @@
     </div>
     <div class="calculation-result">
         <div class="chart">
-            <!-- <p-chart #caloricChart height="fit-content" width="fit-content"></p-chart> -->
             <canvas #caloricChart></canvas>
+            <div class="cards" *ngIf="displayCards">
+                <div class="card" *ngFor="let card of cards">
+                    <div class="title">{{ card.title }}</div>
+                    <div class="amount">{{ card.amount }}<span class="unit">{{ card.unit }}</span>
+                    </div>
+                    <div class="desc">{{ card.desc }}</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

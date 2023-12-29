@@ -41,6 +41,8 @@ export class LoginComponent {
         sessionStorage.setItem('userId', res.user.id);
       }
 
+      this.authService.getPermissions().subscribe((res) => this.authService.permissions = res.permissions);
+
       this.router.navigate(['']);
     });
   }

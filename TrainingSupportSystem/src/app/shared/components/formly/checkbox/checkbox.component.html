@@ -1,6 +1,6 @@
 
     <div class="flex align-items-center gap-1">
-        <p-checkbox [formControl]="formControl"></p-checkbox>
-        <label>{{ to['label'] }}</label>
+        <p-checkbox [formControl]="formControl" [binary]="true" (onChange)="to['onChange'] ? to['onChange']($event) : null"></p-checkbox>
+        <!-- <label>{{ to['label'] }}</label> -->
     </div>
 

@@ -1,0 +1,51 @@
+@import "/src/assets/theme/variables.scss";
+
+.plan-creator-chooser {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 500px;
+
+    .plan-card {
+        box-shadow: $window-shadow;
+        border-radius: 5px;
+        padding: 8px;
+        text-align: center;
+        max-width: 210px;
+        flex: 1;
+        flex-basis: auto;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+
+        .name {
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            left: -76px;
+            width: 50px;
+            height: 100%;
+            opacity: 0.5;
+            background: $main-color;
+            transform: skew(-30deg);
+            transition: left .3s ease-in-out;
+        }
+
+        &:hover {
+            &::before {
+                left: 100%;
+            }
+        }
+
+    }
+}

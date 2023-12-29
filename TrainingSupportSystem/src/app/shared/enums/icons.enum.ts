@@ -8,4 +8,6 @@ export enum Icon {
     TABLE = 'pi pi-table',
     PENCIL = 'pi pi-pencil',
     CUTLERY = 'fa fa-cutlery',
+    TRASH = 'pi pi-trash',
+    TIMES_CIRCLE = 'pi pi-times-circle',
 }

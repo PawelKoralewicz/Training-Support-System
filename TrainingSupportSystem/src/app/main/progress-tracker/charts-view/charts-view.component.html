@@ -1,0 +1,8 @@
+<div class="charts-view">
+    <p-tabView [(activeIndex)]="tabViewIndex" (activeIndexChange)="setChartData(tabViewIndex)">
+        <p-tabPanel *ngFor="let cd of chartsData" [header]="cd.exerciseName">
+            <p-chart type="line" [data]="data" [options]="options"></p-chart>
+            <p-chart type="line" [data]="volumeData" [options]="options"></p-chart>
+        </p-tabPanel>
+    </p-tabView>
+</div>

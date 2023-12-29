@@ -1,0 +1,59 @@
+@import "src/assets/theme/variables.scss";
+
+@mixin list-style {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.diet-plan-creator-container {
+    height: 100%;
+    padding-top: 10px;
+
+    .diet-plan-creator {
+        @include window-style(100%);
+        height: 100%;
+
+        .meal-selector {
+            display: flex;
+            align-items: center;
+
+            ul {
+                @include list-style;
+                gap: 15px; 
+                flex-wrap: wrap;
+            }
+        }
+
+        .selected-meals {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 100%;
+            overflow-y: auto;
+
+            .meal {
+                display: flex;
+                align-items: center;
+
+                .meal-card {
+                    border-radius: 8px;
+                    box-shadow: $window-shadow;
+                    padding: 10px;
+                    width: max-content;
+
+                    .meal-name {
+                        font-weight: 700;
+                    }
+
+                    ul {
+                        @include list-style;
+                        gap: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -32,6 +32,9 @@
     },
     "singlePortionGrammature": {
       "type": "integer"
+    },
+    "foodFamily": {
+      "type": "json"
     }
   }
 }

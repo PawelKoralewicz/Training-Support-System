@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users_workout_plans",
+  "info": {
+    "singularName": "users-workout-plan",
+    "pluralName": "users-workout-plans",
+    "displayName": "Users workout plan",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "options": {
+      "type": "json"
+    },
+    "plan": {
+      "type": "json"
+    },
+    "planName": {
+      "type": "string"
+    },
+    "advancement": {
+      "type": "enumeration",
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced",
+        "pro"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "workoutPlans"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "back",
+        "chest",
+        "arms",
+        "shoulders",
+        "quads",
+        "harmstrings",
+        "bench",
+        "pullUp",
+        "ohp",
+        "squat",
+        "deadlift"
+      ]
+    },
+    "focus": {
+      "type": "enumeration",
+      "enum": [
+        "upper",
+        "legs"
+      ]
+    },
+    "mainGoal": {
+      "type": "enumeration",
+      "enum": [
+        "muscle",
+        "strength"
+      ]
+    }
+  }
+}

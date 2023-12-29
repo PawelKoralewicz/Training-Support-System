@@ -1,0 +1,14 @@
+<div class="plan-generator-container">
+    <ng-container [ngSwitch]="activeStep">
+        <div class="form-container" *ngSwitchCase="'FORM'">
+            <form [formGroup]="form">
+                <formly-form [options]="options" [model]="model" [fields]="fields"></formly-form>
+            </form>
+            <app-button class="next-button" label="Next" (click)="nextStep()"></app-button>
+        </div>
+        <div class="plan-chooser" *ngSwitchCase="'CHOOSER'">
+            <app-plan-creator-chooser [fromGenerator]="true" [generatedPlans]="plans" [generatedExact]="didGenerateExact"></app-plan-creator-chooser>
+            <app-button class="prev-button" label="Prev" (click)="prevStep()"></app-button>
+        </div>
+    </ng-container>
+</div>

@@ -1,7 +1,7 @@
 <label>{{ to['label'] }} {{ to.required ? ' *' : null}}</label>
 <div class="flex flex-wrap gap-3">
     <div class="flex align-items-center gap-1" *ngFor="let opt of to.options | formlySelectOptions: field | async">
-        <p-radioButton [formControl]="formControl" [value]="opt['value']"></p-radioButton>
+        <p-radioButton [name]="getName()" [formControl]="formControl" [value]="opt.value" [formlyAttributes]="field"></p-radioButton>
         <label>{{ opt['label'] }}</label>
     </div>
 </div>

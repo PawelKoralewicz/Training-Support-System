@@ -10,5 +10,6 @@ export class ButtonLineComponent {
   @Input() label!: string;
   @Input() icon = '';
   @Input() severity = 'primary';
+  @Input() disabled = false;
 
 }

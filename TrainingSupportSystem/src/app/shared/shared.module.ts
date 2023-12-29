@@ -26,6 +26,17 @@ import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { NumberRoundingPipe } from './pipes/number-rounding.pipe';
 import { ChartModule } from 'primeng/chart';
+import { FormlyButtonComponent } from './components/formly/formly-button/formly-button.component';
+import { InputNumberComponent } from './components/formly/input-number/input-number.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { PaginatorModule } from 'primeng/paginator';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { MultiselectComponent } from './components/formly/multiselect/multiselect.component';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -38,7 +49,10 @@ import { ChartModule } from 'primeng/chart';
     SidebarComponent,
     DropdownComponent,
     BreadcrumbComponent,
-    NumberRoundingPipe
+    NumberRoundingPipe,
+    FormlyButtonComponent,
+    InputNumberComponent,
+    MultiselectComponent
   ],
   imports: [
     CommonModule,
@@ -55,9 +69,22 @@ import { ChartModule } from 'primeng/chart';
     FontAwesomeModule,
     ToastModule,
     BreadcrumbModule,
-    ChartModule
+    ChartModule,
+    InputNumberModule,
+    KeyFilterModule,
+    DynamicDialogModule,
+    MultiSelectModule,
+    FormlyModule,    
+    AutoCompleteModule,
+    TooltipModule
   ], 
   exports: [
+    TooltipModule,
+    MultiSelectModule,
+    DropdownModule,
+    InputNumberModule,
+    RadioButtonModule,
+    InputTextModule,
     ReactiveFormsModule,
     ButtonComponent,
     ButtonLineComponent,
@@ -68,7 +95,12 @@ import { ChartModule } from 'primeng/chart';
     TabViewModule,
     TableModule,
     NumberRoundingPipe,
-    ChartModule
+    ChartModule,
+    FormsModule,
+    PaginatorModule,
+    ContextMenuModule,
+    KeyFilterModule,
+    AutoCompleteModule
   ]
 })
 export class SharedModule { }

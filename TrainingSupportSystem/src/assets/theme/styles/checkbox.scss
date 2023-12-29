@@ -1,5 +1,6 @@
 @import "/src/assets/theme/variables.scss";
-.p-checkbox-box {
+
+.p-checkbox .p-checkbox-box {
     background: transparent;
     
     &.p-focus {
@@ -8,5 +9,19 @@
     &.p-highlight {
         background: $primary !important;
         border-color: $primary-hover !important;
+    }
+}
+
+formly-wrapper-primeng-form-field {
+    .p-field {
+        &:has(app-checkbox) {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+
+            label {
+                order: 2;
+            }
+        }
     }
 }

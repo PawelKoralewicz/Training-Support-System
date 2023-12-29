@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users_meals",
+  "info": {
+    "singularName": "users-meal",
+    "pluralName": "users-meals",
+    "displayName": "Users meal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "mealName": {
+      "type": "string"
+    },
+    "mealType": {
+      "type": "enumeration",
+      "enum": [
+        "breakfast",
+        "dinner",
+        "supper"
+      ]
+    },
+    "calories": {
+      "type": "integer"
+    },
+    "protein": {
+      "type": "decimal"
+    },
+    "carbs": {
+      "type": "decimal"
+    },
+    "fats": {
+      "type": "decimal"
+    },
+    "allergens": {
+      "type": "json"
+    },
+    "ingredients": {
+      "type": "json"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "meals"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 export interface IDietCalculator {
+    id?: number;
     gender?: string;
     age?: number;
     height?: number;

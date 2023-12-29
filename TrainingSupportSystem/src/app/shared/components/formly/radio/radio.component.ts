@@ -8,4 +8,7 @@ import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
 })
 export class RadioComponent extends FieldType<FieldTypeConfig> {
 
+  getName(): string { 
+    return String(this.field.key);
+  }
 }

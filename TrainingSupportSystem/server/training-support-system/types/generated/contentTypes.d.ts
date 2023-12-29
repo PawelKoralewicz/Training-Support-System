@@ -361,109 +361,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiGroceryGrocery extends Schema.CollectionType {
-  collectionName: 'groceries';
-  info: {
-    singularName: 'grocery';
-    pluralName: 'groceries';
-    displayName: 'Grocery';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    caloriesPerHundredGrams: Attribute.Integer;
-    carbsPerHundredGrams: Attribute.Decimal;
-    proteinPerHundredGrams: Attribute.Decimal;
-    fatsPerHundredGrams: Attribute.Decimal;
-    defaultPortioning: Attribute.String;
-    singlePortionGrammature: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::grocery.grocery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::grocery.grocery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMealMeal extends Schema.CollectionType {
-  collectionName: 'meals';
-  info: {
-    singularName: 'meal';
-    pluralName: 'meals';
-    displayName: 'Meal';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    mealName: Attribute.String;
-    mealType: Attribute.Enumeration<['breakfast', 'dinner', 'supper']>;
-    calories: Attribute.Integer;
-    protein: Attribute.Integer;
-    carbs: Attribute.Integer;
-    fats: Attribute.Integer;
-    allergens: Attribute.JSON;
-    ingredients: Attribute.JSON;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::meal.meal', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::meal.meal', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRpeRpe extends Schema.CollectionType {
-  collectionName: 'rpes';
-  info: {
-    singularName: 'rpe';
-    pluralName: 'rpes';
-    displayName: 'RPE';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    benchTable: Attribute.JSON;
-    user: Attribute.Relation<
-      'api::rpe.rpe',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    squatTable: Attribute.JSON;
-    deadliftTable: Attribute.JSON;
-    squatFirst: Attribute.Integer;
-    squatSecond: Attribute.Integer;
-    benchFirst: Attribute.Integer;
-    benchSecond: Attribute.Integer;
-    deadliftFirst: Attribute.Integer;
-    deadliftSecond: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::rpe.rpe', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::rpe.rpe', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -775,6 +672,23 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'api::rpe.rpe'
     >;
+    workoutPlans: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::users-workout-plan.users-workout-plan'
+    >;
+    permissions: Attribute.Enumeration<['user', 'admin']> &
+      Attribute.DefaultTo<'user'>;
+    personalInfo: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::personal-info.personal-info'
+    >;
+    meals: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::users-meal.users-meal'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -792,6 +706,336 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiExerciseExercise extends Schema.CollectionType {
+  collectionName: 'exercises';
+  info: {
+    singularName: 'exercise';
+    pluralName: 'exercises';
+    displayName: 'Exercise';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    exerciseName: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exercise.exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exercise.exercise',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGroceryGrocery extends Schema.CollectionType {
+  collectionName: 'groceries';
+  info: {
+    singularName: 'grocery';
+    pluralName: 'groceries';
+    displayName: 'Grocery';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    caloriesPerHundredGrams: Attribute.Integer;
+    carbsPerHundredGrams: Attribute.Decimal;
+    proteinPerHundredGrams: Attribute.Decimal;
+    fatsPerHundredGrams: Attribute.Decimal;
+    defaultPortioning: Attribute.String;
+    singlePortionGrammature: Attribute.Integer;
+    foodFamily: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::grocery.grocery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::grocery.grocery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMealMeal extends Schema.CollectionType {
+  collectionName: 'meals';
+  info: {
+    singularName: 'meal';
+    pluralName: 'meals';
+    displayName: 'Meal';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    mealName: Attribute.String;
+    mealType: Attribute.Enumeration<['breakfast', 'dinner', 'supper']>;
+    calories: Attribute.Integer;
+    protein: Attribute.Decimal;
+    carbs: Attribute.Decimal;
+    fats: Attribute.Decimal;
+    allergens: Attribute.JSON;
+    ingredients: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::meal.meal', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::meal.meal', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonalInfoPersonalInfo extends Schema.CollectionType {
+  collectionName: 'personal_infos';
+  info: {
+    singularName: 'personal-info';
+    pluralName: 'personal-infos';
+    displayName: 'Personal info';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    height: Attribute.Integer;
+    weight: Attribute.Decimal;
+    age: Attribute.Integer;
+    activity: Attribute.Decimal;
+    goal: Attribute.Enumeration<['lose', 'maintain', 'gain']>;
+    user: Attribute.Relation<
+      'api::personal-info.personal-info',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    totalCaloricDemand: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::personal-info.personal-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::personal-info.personal-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRpeRpe extends Schema.CollectionType {
+  collectionName: 'rpes';
+  info: {
+    singularName: 'rpe';
+    pluralName: 'rpes';
+    displayName: 'RPE';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    benchTable: Attribute.JSON;
+    user: Attribute.Relation<
+      'api::rpe.rpe',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    squatTable: Attribute.JSON;
+    deadliftTable: Attribute.JSON;
+    squatFirst: Attribute.Integer;
+    squatSecond: Attribute.Integer;
+    benchFirst: Attribute.Integer;
+    benchSecond: Attribute.Integer;
+    deadliftFirst: Attribute.Integer;
+    deadliftSecond: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::rpe.rpe', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::rpe.rpe', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUsersMealUsersMeal extends Schema.CollectionType {
+  collectionName: 'users_meals';
+  info: {
+    singularName: 'users-meal';
+    pluralName: 'users-meals';
+    displayName: 'Users meal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    mealName: Attribute.String;
+    mealType: Attribute.Enumeration<['breakfast', 'dinner', 'supper']>;
+    calories: Attribute.Integer;
+    protein: Attribute.Decimal;
+    carbs: Attribute.Decimal;
+    fats: Attribute.Decimal;
+    allergens: Attribute.JSON;
+    ingredients: Attribute.JSON;
+    user: Attribute.Relation<
+      'api::users-meal.users-meal',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::users-meal.users-meal',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::users-meal.users-meal',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUsersWorkoutPlanUsersWorkoutPlan
+  extends Schema.CollectionType {
+  collectionName: 'users_workout_plans';
+  info: {
+    singularName: 'users-workout-plan';
+    pluralName: 'users-workout-plans';
+    displayName: 'Users workout plan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    options: Attribute.JSON;
+    plan: Attribute.JSON;
+    planName: Attribute.String;
+    advancement: Attribute.Enumeration<
+      ['beginner', 'intermediate', 'advanced', 'pro']
+    >;
+    user: Attribute.Relation<
+      'api::users-workout-plan.users-workout-plan',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    priority: Attribute.Enumeration<
+      [
+        'back',
+        'chest',
+        'arms',
+        'shoulders',
+        'quads',
+        'harmstrings',
+        'bench',
+        'pullUp',
+        'ohp',
+        'squat',
+        'deadlift'
+      ]
+    >;
+    focus: Attribute.Enumeration<['upper', 'legs']>;
+    mainGoal: Attribute.Enumeration<['muscle', 'strength']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::users-workout-plan.users-workout-plan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::users-workout-plan.users-workout-plan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWorkoutPlanWorkoutPlan extends Schema.CollectionType {
+  collectionName: 'workout_plans';
+  info: {
+    singularName: 'workout-plan';
+    pluralName: 'workout-plans';
+    displayName: 'Workout plan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    advancement: Attribute.Enumeration<
+      ['beginner', 'intermediate', 'advanced', 'pro']
+    >;
+    planName: Attribute.String;
+    plan: Attribute.JSON;
+    options: Attribute.JSON;
+    mainGoal: Attribute.Enumeration<['muscle', 'strength']>;
+    focus: Attribute.Enumeration<['upper', 'legs']>;
+    priority: Attribute.Enumeration<
+      [
+        'back',
+        'chest',
+        'arms',
+        'shoulders',
+        'quads',
+        'harmstrings',
+        'bench',
+        'pullUp',
+        'ohp',
+        'squat',
+        'deadlift'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::workout-plan.workout-plan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::workout-plan.workout-plan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Shared {
     export interface ContentTypes {
@@ -802,15 +1046,20 @@ declare module '@strapi/strapi' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::grocery.grocery': ApiGroceryGrocery;
-      'api::meal.meal': ApiMealMeal;
-      'api::rpe.rpe': ApiRpeRpe;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::exercise.exercise': ApiExerciseExercise;
+      'api::grocery.grocery': ApiGroceryGrocery;
+      'api::meal.meal': ApiMealMeal;
+      'api::personal-info.personal-info': ApiPersonalInfoPersonalInfo;
+      'api::rpe.rpe': ApiRpeRpe;
+      'api::users-meal.users-meal': ApiUsersMealUsersMeal;
+      'api::users-workout-plan.users-workout-plan': ApiUsersWorkoutPlanUsersWorkoutPlan;
+      'api::workout-plan.workout-plan': ApiWorkoutPlanWorkoutPlan;
     }
   }
 }

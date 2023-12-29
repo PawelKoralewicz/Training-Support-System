@@ -1,0 +1,60 @@
+<div class="charts-track-selector">
+      <div class="select-track-params">
+        <div class="select-plan">
+          Select plan: 
+        </div>
+          <div class="select-from-plan">
+            <div
+              class="plan-card"
+              *ngFor="let plan of workoutPlans"
+              (click)="getPlanData(plan.plan, plan.id)"
+            >
+              <div class="name">{{ plan.planName }}</div>
+              <div class="info">
+                <ul>
+                  <li>Advancement: {{ plan.advancement }}</li>
+                  <li>Trainings / week: {{ plan.options.trainingsPerWeek }}</li>
+                  <li>Plan length: {{ plan.options.planLength }} weeks</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="exercises-to-track" *ngIf="exercisesList.length">
+            <div class="exercises-multiselect">
+              <label for="exercises-select"> Select exercises to track:</label>
+              <p-multiSelect
+                [options]="exercisesList"
+                [(ngModel)]="selectedExercises"
+                (ngModelChange)="getExercisesData()"
+                name="exercises-select"
+              ></p-multiSelect>
+            </div>
+            <div class="missing-data-info">
+              <div
+                class="message-requred-update"
+                *ngIf="!allExercisesValid && selectedExercises.length; else updateInfo"
+              >
+                You need at least 1 set of an exercise with reps, weight and RPE in
+                first 2 weeks to track your progress. Update those exercises:
+              </div>
+              <ng-template #updateInfo>
+                <div *ngIf="selectedExercises.length" class="message-update">
+                  You can update some data in following exercises if you want: 
+                </div>
+              </ng-template>
+              <div class="data-to-update-list">
+                <div
+                  class="data-to-update-element"
+                  *ngFor="let ex of selectedExercisesData"
+                >
+                  <app-button-line *ngIf="!ex.hasRequiredData || allExercisesValid" class="exercise-to-update" (click)="updateExerciseData(ex)" [label]="ex.exerciseName">
+                  </app-button-line>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="next-button" *ngIf="allExercisesValid">
+        <app-button label="Continue" icon="pi pi-arrow-right" (click)="chartsViewRedirect()"></app-button>
+      </div>
+</div>

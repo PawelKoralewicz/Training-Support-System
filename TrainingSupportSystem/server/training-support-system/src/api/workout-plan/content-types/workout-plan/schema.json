@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workout_plans",
+  "info": {
+    "singularName": "workout-plan",
+    "pluralName": "workout-plans",
+    "displayName": "Workout plan",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "advancement": {
+      "type": "enumeration",
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced",
+        "pro"
+      ]
+    },
+    "planName": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "json"
+    },
+    "options": {
+      "type": "json"
+    },
+    "mainGoal": {
+      "type": "enumeration",
+      "enum": [
+        "muscle",
+        "strength"
+      ]
+    },
+    "focus": {
+      "type": "enumeration",
+      "enum": [
+        "upper",
+        "legs"
+      ]
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "back",
+        "chest",
+        "arms",
+        "shoulders",
+        "quads",
+        "harmstrings",
+        "bench",
+        "pullUp",
+        "ohp",
+        "squat",
+        "deadlift"
+      ]
+    }
+  }
+}

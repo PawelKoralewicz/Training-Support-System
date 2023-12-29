@@ -1,89 +1,5 @@
 @import "/src/assets/theme/variables.scss";
 
-// .sidebar {
-//     position: fixed;
-//     // height: 100vh;
-//     width: $sidebar-width;
-//     background: $main-theme;
-//     box-shadow: $sidebar-shadow;
-
-//     height: calc(6 * 50px + 10px);
-//     max-height: 100vh;
-//     border-bottom-right-radius: 10px;
-
-//     .elements {
-//         .element {
-//             position: relative;
-//             height: 50px;
-//             display: inline-flex;
-//             align-items: center;
-//             min-width: $sidebar-width;
-//             max-width: $sidebar-width;
-//             overflow: hidden;
-//             cursor: pointer;
-//             transition: all .25s linear;
-
-//             &:hover {
-//                 max-width: 220px;
-//             }
-
-//             i, fa-icon, .label {
-//                 color: #c6bfbf;
-//             }
-
-//             i, fa-icon {
-//                 display: block;
-//                 font-size: 20px;
-//                 width: $sidebar-width;
-//                 text-align: center;
-//                 ::ng-deep {
-//                     svg {
-//                         height: 20px;
-//                     }
-//                 }
-//             }
-
-
-//             .label {
-//                 font-size: 16px;
-//                 display: flex;
-//                 align-items: center;
-//                 height: 40px;
-//                 width: max-content;
-//                 white-space: nowrap;
-//                 padding-inline: 10px;
-//                 background: $second-color;
-//                 position: relative;
-//                 border-top-right-radius: 10px;
-//                 border-bottom-right-radius: 10px;
-
-//                 &::before {
-//                     content: '';
-//                     height: 10px;
-//                     width: 10px;
-//                     position: absolute;
-//                     top: -10px;
-//                     background: transparent;
-//                     left: 0px;
-//                     border-bottom-left-radius: 5px;
-//                     box-shadow: -3px 3px 0 0 $second-color;                    
-//                 }
-//                 &::after {
-//                     content: '';
-//                     height: 10px;
-//                     width: 10px;
-//                     position: absolute;
-//                     bottom: -10px;
-//                     background: transparent;
-//                     left: 0px;
-//                     border-top-left-radius: 5px;
-//                     box-shadow: -3px -3px 0 0 $second-color;               
-//                 }
-//             }
-//         }
-//     }
-// }
-
 @mixin trigger-line {
     height: 2px;
     width: 20px;
@@ -147,7 +63,6 @@
             }
     
             .label {
-                font-size: 16px;
                 white-space: nowrap;
             }
     

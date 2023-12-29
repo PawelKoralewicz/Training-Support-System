@@ -1,0 +1,25 @@
+<div class="plan-creator-chooser">
+    <div *ngIf="!fromGenerator && !editingMode" class="plan-card blank-plan" (click)="navigateToPlanCreator()">
+        <div class="name">New plan</div>
+        <div class="info">
+            <ul>
+                <li>
+                    Blank sheet, so you can create plan from scratch.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="not-exact-plan-info" *ngIf="!generatedExact">
+        Unfortunately, currently there is no plan specificly for your needs. But here are some you might be interested in:
+    </div>
+    <div class="plan-card" *ngFor="let plan of workoutPlans" (click)="navigateToPlanCreator(plan)">
+        <div class="name">{{ plan.planName }}</div>
+        <div class="info">
+            <ul>
+                <li>Advancement: {{ plan.advancement }}</li>
+                <li>Trainings / week: {{ plan.options.trainingsPerWeek }}</li>
+                <li>Plan length: {{ plan.options.planLength }} weeks</li>
+            </ul>
+        </div>
+    </div>
+</div>
