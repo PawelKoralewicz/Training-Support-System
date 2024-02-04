@@ -15,7 +15,7 @@ export class DietGeneratorService {
   constructor(private http: HttpClient) { }
 
   getGroceries() {
-    return this.http.get<IGroceries>(this.url + 'groceries');
+    return this.http.get<IGroceries>(this.url + 'groceries', {params: { sort: 'name', "pagination[limit]": 9999 }});
   }
 
   saveMeal(meal: Meal) {

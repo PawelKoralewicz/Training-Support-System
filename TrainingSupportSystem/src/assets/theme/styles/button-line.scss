@@ -6,19 +6,42 @@
         &:active {
             color: var(--#{$severity}-hover);
         }
+
+        &:before {
+            background-color: var(--#{$severity}-hover);
+        }
     }
 }
 
 p-button.p-element {
     .p-button-link {
+        position: relative;
         background: none !important;
 
         span {
             font-weight: 400;
+            text-decoration: none !important;
 
             &.pi {
                 margin-right: 4px;
             }
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 50%;
+            bottom: 2px;
+            transition-property: width, left;
+            transition-duration: 0.4s;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        &:hover:before {
+            width: 95%;
+            left: 5%;
         }
 
         @include button-line-style(primary);

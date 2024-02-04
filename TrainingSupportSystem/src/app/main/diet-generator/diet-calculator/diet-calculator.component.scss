@@ -100,10 +100,8 @@
 
     .calculation-result {
         .chart {
-            max-height: 350px;
-
             canvas {
-                height: 100%;
+                max-height: 350px;
             }
         }
     }

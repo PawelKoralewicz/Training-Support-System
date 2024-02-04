@@ -10,8 +10,6 @@ import { Icon } from 'src/app/shared/enums/icons.enum';
 })
 export class SidebarComponent {
 
-  sidebarOpened = false;
-
   sidebarElements = [
     {
       icon: Icon.HOME,
@@ -54,9 +52,4 @@ export class SidebarComponent {
     localStorage.getItem('userId') ? localStorage.removeItem('userId') : sessionStorage.removeItem('userId');
     this.router.navigate(['/auth/login']);
   }
-
-  toggleSidebar() {
-    this.sidebarOpened = !this.sidebarOpened;
-  }
-
 }

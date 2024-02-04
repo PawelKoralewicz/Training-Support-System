@@ -50,22 +50,25 @@ export class DietGeneratorFormComponent implements OnInit {
           Object.assign(preferences, {[allergensFilter]: allergen});
         })
       }
-
-      if(mealTypesDivision && mealTypesDivision.length) {
-        mealTypesDivision.forEach(el => {
-        })
-      }
       
+      const sortBy = this.model.preference === 'highProtein'
+      ? 'protein:desc'
+      : (this.model.preference === 'lowCarbs'
+        ? 'carbs:asc'
+        : 'fats:asc'
+      );
+
       caloriesDivision.forEach((el, index) => {
         const mealTypeFilter = `filters[mealType][$eq]`;
         const caloriesFilter = `filters[calories][$lte]`;
-        Object.assign(preferences, {[caloriesFilter]: el });
+        Object.assign(preferences, { [caloriesFilter]: el });
+        Object.assign(preferences, { ['sort']: sortBy });
         if(this.model.mealsAmount >= 3) {
-          Object.assign(preferences, {[mealTypeFilter]: mealTypesDivision[index] });
+          Object.assign(preferences, { [mealTypeFilter]: mealTypesDivision[index] });
         }
         preferencesArray.push({...preferences});
       });
-      this.getMeals(preferencesArray)
+      this.getMeals(preferencesArray);
     }
   }
 
@@ -83,9 +86,10 @@ export class DietGeneratorFormComponent implements OnInit {
   }
 
   navigateToGeneratedPlan() {
+    const caloriesDivision = this.caloriesDivision(this.model.mealsAmount);
+    const mealTypesDivision = this.mealTypesDivision(this.model.mealsAmount);
     this.dynamicDialogRef.close();
-    console.log(this.meals);
-    this.router.navigateByUrl('dieting/diet-plan', { state: { meals: [...this.meals], userSelection: this.model } })
+    this.router.navigateByUrl('dieting/diet-plan', { state: { meals: [...this.meals], userSelection: this.model, caloriesDivision, mealTypesDivision } })
   }
 
   caloriesDivision(mealsAmount: number) {
@@ -133,6 +137,7 @@ export class DietGeneratorFormComponent implements OnInit {
         {
           key: 'calories',
           type: 'number',
+          defaultValue: 2500,
           props: {
             // suffix: ' kcal',
             label: 'Calories',

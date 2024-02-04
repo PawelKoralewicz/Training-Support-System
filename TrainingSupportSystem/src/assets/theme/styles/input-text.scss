@@ -1,3 +1,5 @@
+@import "/src/assets/theme/variables.scss";
+
 .p-input-icon-right {
     width: 100%;
 
@@ -22,6 +24,7 @@
 .p-inputtext {
     padding: 3px 5px;
     width: 100%;
+    color: $white-main;
 
     &:focus {
         box-shadow: none !important;
@@ -54,9 +57,16 @@ input {
     }
 }
 
-.p-inputnumber.p-inputnumber-buttons-horizontal {
-    .p-button-icon-only {
-        width: unset;
-        padding: 3px 5px;
+.p-inputnumber {
+
+    .p-inputnumber-input {
+        background: transparent;
+    }
+
+    &.p-inputnumber-buttons-horizontal {
+        .p-button-icon-only {
+            width: unset;
+            padding: 3px 5px;
+        }
     }
 }

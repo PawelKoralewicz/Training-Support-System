@@ -163,17 +163,17 @@ export class MealCreatorComponent implements OnInit {
   }
   
   saveMealPrivate() {
-    // delete this.model.ingredientName;
-    // delete this.model.ingredientPortion;
+    delete this.model.ingredientName;
+    delete this.model.ingredientPortion;
 
-    // const user = Number(localStorage.getItem('userId') || sessionStorage.getItem('userId'));
+    const user = Number(localStorage.getItem('userId') || sessionStorage.getItem('userId'));
     
-    // if(user > 0) {
-    //   this.dietGeneratorService.savePrivateMeal(this.model, user).subscribe();
+    if(user > 0) {
+      this.dietGeneratorService.savePrivateMeal(this.model, user).subscribe();
     
-    //   this.model = new Meal();
-    //   this.ingredients = [];
-    // }
+      this.model = new Meal();
+      this.ingredients = [];
+    }
   }
 
   fields: FormlyFieldConfig[] = [
@@ -203,6 +203,7 @@ export class MealCreatorComponent implements OnInit {
       ]
     },
     {
+      fieldGroupClassName: 'ingredients-section',
       fieldGroup: [
         {
           key: 'ingredientName',
@@ -221,7 +222,8 @@ export class MealCreatorComponent implements OnInit {
           type: 'number',
           defaultValue: this.model.ingredientName ? 1 : null,
           props: {
-
+            label: "Portion size",
+            mode: 'decimal'
           },
           expressions: {
             'props.suffix': (field) => {

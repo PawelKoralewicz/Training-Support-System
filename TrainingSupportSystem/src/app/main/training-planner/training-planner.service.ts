@@ -33,7 +33,7 @@ export class TrainingPlannerService {
   }
 
   getExercises() {
-    return this.http.get(this.url + 'exercises', { params: { sort: 'exerciseName', "pagination[limit]": 999 }});
+    return this.http.get(this.url + 'exercises', { params: { sort: 'exerciseName', "pagination[limit]": 9999 }});
   }
 
   editPlan(id: number, plan: IWeeksPlan[], options?: IPlanCreatorForm) {

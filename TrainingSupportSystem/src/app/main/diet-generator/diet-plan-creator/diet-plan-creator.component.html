@@ -3,14 +3,14 @@
         <div class="meal-selector">
             <div class="dropdown">
                 <label>Select meal</label>
-                <p-dropdown [options]="meals" [group]="true" optionLabel="mealName" [(ngModel)]="meal">
+                <p-dropdown [options]="meals" [group]="true" optionLabel="mealName" [(ngModel)]="meal" appendTo="body">
                     <ng-template let-group pTemplate="group">
                         <div class="flex align-items-center">
                             <span>{{ group.label }}</span>
                         </div>
                     </ng-template>
                     <ng-template let-option pTemplate="item">
-                        <div class="flex align-items-center" pTooltip="{{ 'C: ' + option.carbs + '  P: ' + option.protein + '  F: ' + option.fats }}">
+                        <div class="flex align-items-center" pTooltip="{{ 'C: ' + (option.carbs | number: '1.0-1') + '  P: ' + (option.protein | number: '1.0-1') + '  F: ' + (option.fats | number: '1.0-1') }}">
                             <span>{{ option.mealName }}</span>
                         </div>
                     </ng-template>
@@ -18,25 +18,30 @@
             </div>
             <app-button-line icon="pi pi-plus" label="Add meal" (click)="addMeal()"></app-button-line>
             <ul *ngIf="selectedMeals.length">
-                <li>Calories: {{ totalCalories.calories }} kcal</li>
-                <li>Carbs: {{ totalCalories.carbs }} g</li>
-                <li>Protein: {{ totalCalories.protein }} g</li>
-                <li>Fats: {{ totalCalories.fats }} g</li>
+                <li>Calories: {{ totalCalories.calories | number: '1.0-1' }} kcal</li>
+                <li>Carbs: {{ totalCalories.carbs | number: '1.0-1' }} g</li>
+                <li>Protein: {{ totalCalories.protein | number: '1.0-1' }} g</li>
+                <li>Fats: {{ totalCalories.fats | number: '1.0-1' }} g</li>
             </ul>
         </div>
         <div class="selected-meals">
-            <div class="meal" *ngFor="let meal of selectedMeals; let i = index">
-                <div class="meal-card" [pTooltip]="getTooltip(i)" [escape]="false" [autoHide]="false">
+                <div class="meal-card" *ngFor="let meal of selectedMeals; let i = index" [pTooltip]="getTooltip(i)" [escape]="false" [autoHide]="false">
                     <div class="meal-name">{{ meal.mealName }}</div>
-                    <ul>
-                        <li>Calories: {{ meal.calories }}</li>
-                        <li>Carbs: {{ meal.carbs }}</li>
-                        <li>Protein: {{ meal.protein }}</li>
-                        <li>Fats: {{ meal.fats }}</li>
+                    <div class="ingredients-info">
+                        <ul class="ingredients">
+                            <li *ngFor="let ingredient of meal.ingredients">
+                                {{ getPortioning(ingredient.ingredientName, ingredient.portionSize) }}
+                            </li>
+                        </ul>
+                    <i class="pi pi-times" (click)="deleteMeal(i)"></i>
+                    </div>
+                    <ul class="macros">
+                        <li>{{ meal.calories }} kcal</li>
+                        <li>C: {{ meal.carbs | number: '1.0-1' }} g</li>
+                        <li>P: {{ meal.protein | number: '1.0-1' }} g</li>
+                        <li>F: {{ meal.fats | number: '1.0-1' }} g</li>
                     </ul>
                 </div>
-                <app-button-line icon="pi pi-times" severity="error" (click)="deleteMeal(i)"></app-button-line>
-            </div>
         </div>
     </div>
 </div>

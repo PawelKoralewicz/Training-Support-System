@@ -1,39 +1,33 @@
 @import "/src/assets/theme/variables.scss";
 
 .main-container {
-    height: 100%;
     width: 100%;
-    padding: 12px;
+    overflow-x: hidden;
+
+    .sidebar-container {
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        justify-self: center;
+        padding: 8px;
+    }
 
     .main {
-        height: inherit;
         width: inherit;
-        background: $main-theme;
-        border-radius: 15px;
-        display: flex;
-        box-shadow: $main-shadow;
-    
-        .sidebar-container {
-            width: min-content;
-        }
+        display: grid;
+        place-items: center;
+        
         .main-content {
-            width: calc(100% - $sidebar-width-closed);
             height: inherit;
-            padding: 10px;
-            padding-left: 0;
-            transition: width 0.2s ease-in-out;
+            margin-top: 55px;
+            width: 100%;
+            min-width: 755px;
+            max-width: 930px;
 
             .content {
                 height: 100%;
                 width: 100%;
                 border-radius: 10px;
-                background: #f8f9fe;
-            }
-        }
-
-        &:has(.sidebar.opened) {
-            .main-content {
-                width: calc(100% - $sidebar-width-opened);
             }
         }
     }

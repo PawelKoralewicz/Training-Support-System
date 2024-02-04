@@ -8,52 +8,70 @@
 }
 
 .diet-plan-creator-container {
-    height: 100%;
-    padding-top: 10px;
-
     .diet-plan-creator {
-        @include window-style(100%);
-        height: 100%;
-
         .meal-selector {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
 
             ul {
                 @include list-style;
                 gap: 15px; 
                 flex-wrap: wrap;
+                margin-left: auto;
             }
         }
 
         .selected-meals {
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            max-height: 100%;
-            overflow-y: auto;
-
-            .meal {
-                display: flex;
-                align-items: center;
+            padding-top: 10px;
 
                 .meal-card {
-                    border-radius: 8px;
-                    box-shadow: $window-shadow;
-                    padding: 10px;
-                    width: max-content;
+                    width: 100%;
+                    border-radius: $basic-radius;
+                    overflow: hidden;
 
                     .meal-name {
                         font-weight: 700;
+                        background-color: $main-color;
+                        padding-block: 8px;
+                        text-align: center;
                     }
 
-                    ul {
-                        @include list-style;
-                        gap: 10px;
+                    .ingredients-info {
+                        display: flex;
+                        padding-block: 8px;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        background: $main-theme;
+
+                        ul.ingredients {
+                            list-style: none;
+                            padding: 0;
+                        }
+
+                        i {
+                            color: $sidebar-font-color;
+                            transition: 0.3s ease-in-out;
+                            transition-property: color, size;
+                            cursor: pointer;
+
+                            &:hover {
+                                color: $white-main;
+                                scale: 1.1;
+                            }
+                        }
+                    }
+
+                    ul.macros {
+                       @include list-style;
+                       justify-content: center;
+                       gap: 10px;
+                       background-color: $main-color;
+                       padding-block: 8px;
                     }
                 }
-            }
         }
     }
 }

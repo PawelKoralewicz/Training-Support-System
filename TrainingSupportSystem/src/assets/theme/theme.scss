@@ -8,15 +8,17 @@
 @import "./styles/tabview.scss";
 
 * {
-    // font-family: monospace;
     font-family: 'Orbitron';
     font-size: 14px;
 }
 
 body {
-    height: 100vh;
-    width: 100vw;
+    color: $white-main;
     margin: 0;
+    background-image: url('/assets/images/main-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 label {

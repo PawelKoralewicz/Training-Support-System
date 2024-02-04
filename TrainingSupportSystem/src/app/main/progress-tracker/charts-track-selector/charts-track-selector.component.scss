@@ -5,66 +5,74 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-bottom: 8px;
+
+    .select-plan {
+        margin-bottom: 8px;
+    }
 
     .select-from-plan {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
 
         .plan-card {
-            box-shadow: $window-shadow;
-            border-radius: 5px;
-            padding: 8px;
+            border-radius: $basic-radius;
             text-align: center;
-            min-width: 145px;
-            max-width: 240px;
-            flex: 1;
-            flex-basis: auto;
-            cursor: pointer;
             overflow: hidden;
             position: relative;
+            cursor: pointer;
     
             .name {
                 font-weight: 600;
+                background-color: $main-color;
+                padding-block: 6px;
             }
     
             ul {
                 list-style: none;
                 padding-left: 0;
-                margin-bottom: 0;
-            }
-    
-            &::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                left: -76px;
-                width: 50px;
-                height: 100%;
-                opacity: 0.5;
-                background: $main-color;
-                transform: skew(-30deg);
-                transition: left .3s ease-in-out;
-            }
-    
-            &:hover {
+                margin: 0;
+                padding-block: 6px;
+                background: $main-theme;
+                
                 &::before {
-                    left: 100%;
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 0;
+                    background-color: $main-color;
+                    z-index: -1;
+                    transition: 0.3s ease-in-out;
+                    transition-property: height;
+                }
+            }
+
+            &:hover {
+                ul::before {
+                    height: 100%;
                 }
             }
         }
     }
 
     .exercises-to-track {
-        padding-top: 10px;
         display: flex;
         flex-direction: column;
         gap: 10px;
+
+        .exercises-multiselect {
+            label {
+                padding-block: 8px;
+            }
+        }
 
         ::ng-deep {
             p-multiselect {
                 .p-multiselect {
                     max-width: 220px;
+                    background: transparent;
                 }
                 .p-overlay .p-multiselect-panel {
                     min-width: 200px;

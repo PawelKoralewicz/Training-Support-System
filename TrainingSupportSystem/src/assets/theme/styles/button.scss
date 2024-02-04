@@ -23,42 +23,6 @@ p-button.p-element {
             box-shadow: none;
         }
 
-        &.p-button-primary {
-            background: $primary;
-
-            &:hover,
-            &:active {
-                background: $primary-hover;
-            }
-        }
-
-        &.p-button-success {
-            background: $success;
-
-            &:hover,
-            &:active {
-                background: $success-hover;
-            }
-        }
-
-        &.p-button-warning {
-            background: $warning;
-
-            &:hover,
-            &:active {
-                background: $warning-hover;
-            }
-        }
-
-        &.p-button-info {
-            background: $info;
-
-            &:hover,
-            &:active {
-                background: $info-hover;
-            }
-        }
-
         @include button-style(primary);
         @include button-style(success);
         @include button-style(info);

@@ -1,7 +1,20 @@
+@import "/src/assets/theme/variables.scss";
+
 @mixin useEllipsis {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@mixin paginatorButton {
+    background: transparent;
+    border: $basic-border;
+    color: $white-main;
+}
+
+@mixin paginatorButtonTransition {
+    transition-property: border, color;
+    transition: .3s ease-in-out;
 }
 
 .plan-creator-container {
@@ -42,11 +55,18 @@
 
                     .p-datatable-thead {
                         tr {
+                            th {
+                                color: $sidebar-font-color;
+                                background: $main-theme;
+                            }
+
                             &:first-child {
                                 th {
                                     border-bottom-width: 0px;
+
                                     &:first-of-type {
                                         text-align: center;
+                                        border-top-left-radius: $basic-radius;
                                     }
 
                                     &:nth-of-type(2) {
@@ -54,6 +74,10 @@
                                         @include useEllipsis;
                                         align-items: center;
                                         justify-content: space-between;
+                                    }
+
+                                    &:last-of-type {
+                                        border-top-right-radius: $basic-radius;
                                     }
                                 }
                             }
@@ -69,24 +93,42 @@
                     }
 
                     .p-datatable-tbody {
-                        tr.inside-header {
-                            td {
-                                text-align: left;
-                                padding: 0.5rem;
-                                border: 1px solid #dee2e6;
-                                border-width: 0 0 1px 0;
-                                font-weight: 700;
-                                color: #343a40;
-                                background: #f8f9fa;
-                                transition: box-shadow 0.2s;
-                                border-width: 0 0 1px 1px;
+                        tr {
+                            background: transparent;
+                            color: $white-main;
+                            
+                            &.inside-header {
+                                td {
+                                    // color: $white-main;
+                                    text-align: left;
+                                    padding: 0.5rem;
+                                    border: 1px solid #dee2e6;
+                                    border-width: 0 0 1px 0;
+                                    font-weight: 700;
+                                    color: $sidebar-font-color;
+                                    background: radial-gradient(#8e0e006e, transparent);
+                                    transition: box-shadow 0.2s;
+                                    border-width: 0 0 1px 1px;
+        
+                                    &:last-of-type {
+                                        border-right-width: 1px;
+                                    }
     
-                                &:last-of-type {
-                                    border-right-width: 1px;
+                                    &:not(:first-child) {
+                                        @include useEllipsis;
+                                    }
                                 }
+                            }
 
-                                &:not(:first-child) {
-                                    @include useEllipsis;
+                            &:last-child {
+                                td {
+                                    &:first-of-type {
+                                        border-bottom-left-radius: $basic-radius;
+                                    }
+
+                                    &:last-of-type {
+                                        border-bottom-right-radius: $basic-radius;
+                                    }
                                 }
                             }
                         }
@@ -97,6 +139,36 @@
                             justify-content: space-between;
                         }
                     }
+                }
+            }
+        }
+    }
+
+    ::ng-deep p-paginator {
+        .p-paginator {
+            border-radius: $basic-radius;
+            background: $main-theme;
+            border: $basic-border;
+
+            .p-paginator-pages {
+                .p-paginator-page.p-paginator-element {
+                    @include paginatorButtonTransition;
+                    
+                    &.p-highlight {
+                        font-weight: 500;
+                    }
+                    
+                    &.p-highlight, &:hover {
+                        @include paginatorButton;
+                    }
+                }
+            }
+            
+            .p-paginator-element {
+                @include paginatorButtonTransition;
+
+                &:hover {
+                    @include paginatorButton;
                 }
             }
         }

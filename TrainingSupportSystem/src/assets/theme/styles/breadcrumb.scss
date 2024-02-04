@@ -1,3 +1,5 @@
+@import "/src/assets/theme/variables.scss";
+
 p-breadcrumb {
     margin-block: auto;
     
@@ -5,5 +7,17 @@ p-breadcrumb {
         background: transparent;
         border: none;
         padding-block: 0;
+
+        ul {
+            li {
+                color: $sidebar-font-color !important;
+                
+                a {
+                    span, svg {
+                        color: $sidebar-font-color !important;
+                    }
+                }
+            }
+        }
     }
 } 

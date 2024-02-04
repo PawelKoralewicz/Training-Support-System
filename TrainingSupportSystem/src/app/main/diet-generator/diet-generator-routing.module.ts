@@ -37,6 +37,15 @@ export const supperResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot, st
   })));
 }
 
+export const groceriesResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  return inject(DietGeneratorService).getGroceries().pipe(map(data => data.data.map(br => {
+    return {
+      name: br.attributes.name,
+      defaultPortioning: br.attributes.defaultPortioning
+    }
+  })))
+}
+
 const routes: Routes = [
   {
     path: '', component: DietGeneratorComponent, children: [
@@ -47,10 +56,14 @@ const routes: Routes = [
         path: 'plan-creator', component: DietPlanCreatorComponent, resolve: {
           breakfasts: breakfastResolver,
           dinners: dinnerResolver,
-          suppers: supperResolver
+          suppers: supperResolver,
+          groceries: groceriesResolver
         }
       },
-      { path: 'diet-plan', component: GeneratedDietComponent },
+      { path: 'diet-plan', component: GeneratedDietComponent, resolve: {
+          groceries: groceriesResolver
+        } 
+      },
       { path: '**', redirectTo: '', pathMatch: 'full'}
     ]
   }

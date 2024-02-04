@@ -37,6 +37,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MultiselectComponent } from './components/formly/multiselect/multiselect.component';
 import { TooltipModule } from 'primeng/tooltip';
+import { PTableArrowDisableDirective } from './directives/ptable-arrow-disable.directive';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { TooltipModule } from 'primeng/tooltip';
     NumberRoundingPipe,
     FormlyButtonComponent,
     InputNumberComponent,
-    MultiselectComponent
+    MultiselectComponent,
+    PTableArrowDisableDirective
   ],
   imports: [
     CommonModule,
@@ -100,7 +102,8 @@ import { TooltipModule } from 'primeng/tooltip';
     PaginatorModule,
     ContextMenuModule,
     KeyFilterModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    PTableArrowDisableDirective
   ]
 })
 export class SharedModule { }

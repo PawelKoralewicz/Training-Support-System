@@ -1,0 +1,32 @@
+<div class="generated-diet-container">
+    <div class="diet-info">
+        <ul class="diet-macros" [style]="'--macros-delay:' + dietPlan.length * 200 + 'ms'">
+            <li>{{ dietMacros.kcal }} kcal</li>
+            <li>C: {{ dietMacros.carbs | number: '1.0-1'}} g</li>
+            <li>P: {{ dietMacros.protein | number: '1.0-1'}} g</li>
+            <li>F: {{ dietMacros.fats | number: '1.0-1'}} g</li>
+        </ul>
+        <div class="export-btn">
+            <app-button-line label="Export PDF" icon="pi pi-file-pdf" (click)="exportToPdf()"></app-button-line>
+        </div>
+    </div>
+    <div class="meal" *ngFor="let meal of dietPlan; let mi = index;" [style]="'--translate: ' + (mi + 1) * -100 + '%'" [style]="'--delay: ' + mi * 200 + 'ms'">
+        <div class="meal-number"><span>Meal {{ mi + 1 }}</span><i class="pi pi-refresh" (click)="regenerateMeal(mi)"></i></div>
+        <div class="dishes-container">
+            <div class="dish" *ngFor="let dish of meal; let di = index">
+                <div class="dish-name">{{ dish.mealName }}</div>
+                <ul class="ingredients">
+                    <li *ngFor="let ingredient of dish.ingredients">
+                        {{ getPortioning(ingredient.ingredientName, ingredient.portionSize) }}
+                    </li>
+                </ul>
+                <ul class="macros">
+                    <li>{{ dish.calories + ' kcal' }}</li>
+                    <li>C: {{ dish.carbs | number: '1.0-1' }} g</li>
+                    <li>P: {{ dish.protein | number: '1.0-1' }} g</li>
+                    <li>F: {{ dish.fats | number: '1.0-1' }} g</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

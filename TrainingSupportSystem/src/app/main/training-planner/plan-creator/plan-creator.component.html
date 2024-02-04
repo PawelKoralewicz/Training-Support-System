@@ -55,10 +55,8 @@
       </ng-template>
       <ng-template pTemplate="body" let-day>
         <tr *ngIf="day.dayNumber !== 1" class="inside-header">
-          <td style="font-weight: 700; color: #343a40;
-          background: #f8f9fa;">{{ "Day " + day.dayNumber }}</td>
-          <td *ngFor="let col of columns" style="font-weight: 700; color: #343a40;
-          background: #f8f9fa;">{{ col.header }}</td>
+          <td>{{ "Day " + day.dayNumber }}</td>
+          <td *ngFor="let col of columns">{{ col.header }}</td>
         </tr>
         <ng-container *ngFor="let exercise of day.exercises; let ei = index">
           <tr *ngFor="let set of exercise.sets; let si = index" [pContextMenuRow]="exercise">
@@ -81,13 +79,13 @@
                     <ng-container [ngSwitch]="col.field">
                         <p-cellEditor *ngIf="col.field !== 'setNumber'">
                             <ng-template pTemplate="input">
-                                    <p-inputNumber *ngSwitchCase="'weight'" [(ngModel)]="set[col.field]"></p-inputNumber>                                
-                                    <p-inputNumber *ngSwitchCase="'reps'" [(ngModel)]="set[col.field]"></p-inputNumber>
-                                    <p-inputNumber *ngSwitchCase="'rest'" suffix="s" [(ngModel)]="set[col.field]"></p-inputNumber>
-                                    <p-inputNumber *ngSwitchCase="'oneRmPercent'" suffix="%" [(ngModel)]="set[col.field]"></p-inputNumber>
-                                    <input pInputText *ngSwitchCase="'comment'" [(ngModel)]="set[col.field]"/>
-                                    <input pInputText [(ngModel)]="set[col.field]" [minlength]="4" [maxlength]="4" [pKeyFilter]="tempoRegex" *ngSwitchCase="'tempo'"/>
-                                    <p-dropdown *ngSwitchCase="'rpe'" [options]="rpeValues" [(ngModel)]="set[col.field]" optionValue="label" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>                           
+                                    <p-inputNumber pTableArrowDisable *ngSwitchCase="'weight'" [(ngModel)]="set[col.field]"></p-inputNumber>                                
+                                    <p-inputNumber pTableArrowDisable *ngSwitchCase="'reps'" [(ngModel)]="set[col.field]"></p-inputNumber>
+                                    <p-inputNumber pTableArrowDisable *ngSwitchCase="'rest'" suffix="s" [(ngModel)]="set[col.field]"></p-inputNumber>
+                                    <p-inputNumber pTableArrowDisable *ngSwitchCase="'oneRmPercent'" suffix="%" [(ngModel)]="set[col.field]"></p-inputNumber>
+                                    <input pInputText pTableArrowDisable *ngSwitchCase="'comment'" [(ngModel)]="set[col.field]"/>
+                                    <input pInputText pTableArrowDisable [(ngModel)]="set[col.field]" [minlength]="4" [maxlength]="4" [pKeyFilter]="tempoRegex" *ngSwitchCase="'tempo'"/>
+                                    <p-dropdown pTableArrowDisable *ngSwitchCase="'rpe'" [options]="rpeValues" [(ngModel)]="set[col.field]" optionValue="label" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>                           
                             </ng-template>
                             <ng-template pTemplate="output">
                                 {{ set[col.field] }}

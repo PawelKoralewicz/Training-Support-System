@@ -4,49 +4,102 @@
     height: 100%;
     overflow-y: auto;
 
+    form {
+        padding-top: 6px;
+
+        ::ng-deep formly-form {
+            formly-group {
+                display: flex;
+                flex-direction: column;
+                row-gap: 1rem;
+            }
+
+            .ingredients-section {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+                column-gap: 10px;
+                flex-wrap: wrap;
+
+                formly-field {
+                    &:first-of-type {
+                        flex: 2;
+                        min-width: 200px;
+                    }
+                }
+            }
+        }
+    }
+    
     .meal {
         .meal-name {
             font-weight: 700;
             font-size: clamp(16px, 3vw, 20px);
         }
+
+        .meal-macros {
+            ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding-left: 0;
+                gap: 2.5rem;
+            }
+        }
+
         .ingredients {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+
             .ingredient {
-                background: #ffffdd;
                 box-shadow: 0px 0px 3px 2px rgba(25, 25, 25, 0.3);
                 border-radius: 3px;
-                width: clamp(250px, 50%, 500px);
-                padding-inline: 15px;
+                width: 100%;                
+
                 .ingredient-name {
                     font-weight: 600;
                     font-size: clamp(14px, 2vw, 16px);
+                    text-align: center;
+                    border-top-right-radius: $basic-radius;
+                    border-top-left-radius: $basic-radius;
                 }
-
+                
+                .ingredient-name, ul.macros {
+                    background-color: $main-color;
+                    padding-block: 8px;
+                }
+                
                 .portion-info {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding-block: 5px;
-
+                    padding: 8px;
+                    background: $main-theme;
+                    
                     i {
                         cursor: pointer;
-                        border-radius: 50%;
-
+                        color: $sidebar-font-color;
+                        transition-property: color, scale;
+                        transition: .3s ease-in-out;
+                        
                         &:hover {
-                            background: $main-color;
+                            color: $white-main;
+                            scale: 1.2;
                         }
                     }
                 }
-
-                .macros {
+                
+                ul.macros {
+                    border-bottom-right-radius: $basic-radius;
+                    border-bottom-left-radius: $basic-radius;
                     margin: 0;
                     display: flex;
                     justify-content: space-evenly;
                     gap: 5px;
                     flex-wrap: wrap;
-                    padding: 0;
-                    li {
-                        list-style: none;
-                    }
+                    padding-left: 0;
+                    list-style: none;
                 }
             }
         }

@@ -9,12 +9,15 @@
 
 $main-color: #8e0e00;
 $second-color: #1f1c18;
-$main-theme: linear-gradient(to right, $main-color, $second-color);
+$color-white: #fff;
+$white-main: #f8f9fe;
+$main-theme: radial-gradient(#8e0e006e, transparent);
 $main-shadow: 1px 1px 11px 1px #252525;
 
 $window-shadow: inset 0px 0px 8px 3px #25252555;
 
 $basic-radius: 8px;
+$basic-border: 1px solid $white-main;
 
 $primary: var(--primary);
 $primary-hover: var(--primary-hover);

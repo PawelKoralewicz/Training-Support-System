@@ -32,11 +32,13 @@ export class DietPlanCreatorComponent {
     fats: 0
   };
   selectedMeals: any[] = [];
+  groceries: { name: string, defaultPortioning: string }[] = [];
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.meals[0].items = this.activatedRoute.snapshot.data['breakfasts'];
     this.meals[1].items = this.activatedRoute.snapshot.data['dinners'];
     this.meals[2].items = this.activatedRoute.snapshot.data['suppers'];
+    this.groceries = this.activatedRoute.snapshot.data['groceries'];
     console.log(this.meals[0].items);
   }
 
@@ -51,25 +53,17 @@ export class DietPlanCreatorComponent {
   }
 
   getTooltip(i: number): string {
-    const ingredients = this.selectedMeals[i].ingredients;
-    const ingredientsList = ['<div>Ingredients:</div><ul>'];
-    ingredients.forEach((el: any) => {
-      ingredientsList.push(`<li>${el.ingredientName}, amount: ${el.portionSize}</li>`);
-    });
-
-    ingredientsList.push('</ul>');
     
     const allergens = this.selectedMeals[i].allergens;
+    const ingredientsList = [];
 
     if(allergens && allergens.length) {
       ingredientsList.push('<div>Allergens:</div><ul>');
       allergens.forEach((allergen: any) => ingredientsList.push(`<li>${allergen}</li>`))
       ingredientsList.push('</ul>');
     }
-
+    
     const text = ingredientsList.join('');
-    // text.concat('</ul>');
-    // console.log(text);
     return text;
   }
 
@@ -83,6 +77,11 @@ export class DietPlanCreatorComponent {
       this.totalCalories.protein += meal.protein;
       this.totalCalories.fats += meal.fats;
     })
+  }
+
+  getPortioning(name: string, portion: number) {
+    const index = this.groceries.findIndex(el => el.name === name);
+    return `${name}, ${portion} ${this.groceries[index].defaultPortioning}`;
   }
 
   exportToPDF() {

@@ -1,0 +1,126 @@
+@import "/src/assets/theme/variables.scss";
+
+@keyframes fadeIn {
+    from {
+        transform: translateX(var(--translateX));
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@mixin animation($delay-prop) {
+    animation-name: fadeIn;
+    animation-duration: 0.8s;
+    animation-delay: $delay-prop;
+    animation-fill-mode: backwards;
+}
+
+.generated-diet-container {
+    
+    .diet-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 8px;
+        
+        .diet-macros {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            --translateX: -100%;
+            @include animation(var(--macros-delay));
+            
+            & + .export-btn {
+                --translateX: 100%;
+                @include animation(0.7s);
+            }
+
+            li {
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    .meal {
+        --translateX: -100%;
+        animation-name: fadeIn;
+        animation-duration: 0.8s;
+        animation-delay: var(--delay);
+        animation-fill-mode: backwards;
+        display: grid;
+        gap: 10px;
+
+        .meal-number {
+            i {
+                margin-left: 10px;
+                color: $sidebar-font-color;
+                transition-property: color, transform;
+                transition: 0.3s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    transform: rotate(45deg);
+                    color: $color-white;
+                }
+            }
+        }
+
+        .dishes-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+
+            .dish {
+                border-radius: 8px;
+                background: radial-gradient(#8e0e006e, transparent);
+                margin-bottom: 10px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+    
+                .dish-name {
+                    background-color: $main-color;
+                    border-top-right-radius: inherit;
+                    border-top-left-radius: inherit;
+                    padding: 10px;
+                    text-align: center;
+                }
+    
+                .macros {
+                    display: flex;
+                    list-style: none;
+                    padding-left: 0;
+                    gap: 10px;
+                    margin-block: 0;
+                    padding: 10px;
+                    background: $main-color;
+                    border-bottom-left-radius: inherit;
+                    border-bottom-right-radius: inherit;
+                    margin-top: auto;
+                    justify-content: center;
+                    
+                    li {
+                        font-size: 12px;
+                    }
+                }
+    
+                .ingredients {
+                    margin: 0;
+                    list-style: none;
+                    padding: 10px;
+                    text-align: center;
+
+                    li {
+                        line-height: 1.5;
+                    }
+                }
+            }
+        }
+
+    }
+}

@@ -1,165 +1,75 @@
 @import "/src/assets/theme/variables.scss";
 
-@mixin trigger-line {
-    height: 2px;
-    width: 20px;
-    background: $sidebar-font-color;
-    position: absolute;
-}
-
-@mixin active-element {
-    content: '';
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background: transparent;
-}
-
-@keyframes shake {
-    0% { transform: translateX(0) }
-    25% { transform: translateY(-4px) }
-    35% { transform: translateY(-4px) rotate(17deg) }
-    55% { transform: translateY(-4px) rotate(-17deg) }
-    65% { transform: translateY(-4px) rotate(17deg) }
-    75% { transform: translateY(-4px) rotate(-17deg) }
-    100% { transform: translateY(0) rotate(0) }
-}
-
 .sidebar {
-    height: 100%;
-    width: $sidebar-width-closed;
-    overflow: hidden;
-    transition: width 0.2s ease-in-out;
+    background: $main-color;
+    padding-inline: 16px;
+    border-radius: 8px;
+    color: $sidebar-font-color;
+    font-size: 14px;
+    display: flex;
+    gap: 16px;
+    min-width: 755px;
+    max-width: 930px;
+    margin-inline: auto;
 
-    .elements {
-        height: calc(100% - 40px);
+    .element {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding-block: 8px;
         position: relative;
 
-        .element {
-            cursor: pointer;
-            height: 50px;
-            display: flex;
-            align-items: center;
-    
-            i,
-            fa-icon,
-            .label {
-                color: $sidebar-font-color;
-            }
-    
-            i,
-            fa-icon {
-                display: block;
-                font-size: 20px;
-                width: $sidebar-width-closed;
-                text-align: center;
-    
-                ::ng-deep {
-                    svg {
-                        height: 20px;
-                    }
-                }
-            }
-    
-            .label {
-                white-space: nowrap;
-            }
-    
-            &.active-route {
-                background: #f8f9fe;
-                border-top-left-radius: 15px;
-                border-bottom-left-radius: 15px;
-                margin-left: 5px;
-                position: relative;
-    
-                i,
-                fa-icon,
-                .label {
-                    color: $second-color;
-                }
-    
-                &::before {
-                    @include active-element;
-                    inset: -20px 0 auto auto;
-                    box-shadow: 7px 10px 0px 0px #f8f9fe;
-                }
-    
-                &::after {
-                    @include active-element;
-                    inset: auto 0 -20px auto;
-                    box-shadow: 7px -10px 0px 0px #f8f9fe;
-                }
-            }
+        i, fa-icon {
+            margin-right: 10px;
+            font-size: 18px;
 
-            &:last-of-type {
-                position: absolute;
-                bottom: 10px;
-            }
-
-            &:hover {
-                &:not(.active-route, :last-child) {
-                    i, fa-icon {
-                        animation: shake 0.45s;
-                    }
-                }
+            &::ng-deep svg {
+                height: 18px;
             }
         }
-    }
 
+        span {
+            white-space: nowrap;
+        }
 
-    .sidebar-trigger {
-        padding: 5px;
-        height: 40px;
+        &:last-of-type {
+            margin-left: auto;
+        }
 
-        .trigger {
-            margin: 5px 11px;
-            cursor: pointer;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            flex-direction: column;
-            row-gap: 3px;
-            position: relative;
-            overflow: hidden;
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            width: 0;
+            height: 2px;
+            background-color: $color-white;
+            left: 50%;
+            transition-property: width, left;
+            transition-duration: 0.4s;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
 
-            .first-line,
-            .second-line,
-            .third-line {
-                display: block;
-                @include trigger-line;
-                border-radius: 1px;
-                transition: all .2s ease-in-out;
-            }
+        }
 
-            .second-line {
-                top: 6px;
-            }
+        &:hover {
+            color: $color-white;
+            transition-property: color;
+            transition-duration: 0.4s;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
 
-            .third-line {
-                top: 12px;
+            &:before {
+                width: 105%;
+                left: -2%;
             }
         }
-    }
 
-    &.opened {
-        width: $sidebar-width-opened;
+        &.active-route {
+            color: $color-white;
+            cursor: default;
 
-        .sidebar-trigger {
-            .trigger {
-                .first-line {
-                    top: 7px;
-                    transform: rotate(45deg);
-                }
-
-                .second-line {
-                    transform: translateX(-20px);
-                }
-
-                .third-line {
-                    top: 7px;
-                    transform: rotate(-45deg);
-                }
+            &:before {
+                width: 105%;
+                left: -2%;
+                height: 1px;
             }
         }
     }

@@ -20,7 +20,7 @@
         </div>
       </form>
     </div>
-    <div class="calculation-output">
+    <div class="calculation-output" *ngIf="calculationResult[0].length">
       <p-table [value]="calculationResult" styleClass="p-datatable-sm p-datatable-gridlines">
         <ng-template pTemplate="header">
           <tr>

@@ -169,6 +169,7 @@ export class DietCalculatorComponent implements OnInit {
         const y = chart.getDatasetMeta(0).data[0].y;
         ctx.font = 'bold 36px orbitron';
         ctx.textAlign = 'center';
+        ctx.fillStyle = '#f8f9fe'
         ctx.fillText(text, x, y - 25);
         ctx.font = '12px orbitron';
         ctx.fillText(protText, x, y + 20);
