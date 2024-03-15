@@ -8,7 +8,7 @@ import { Meal } from './data/meal';
 import { allergens } from '../data/allergens';
 import { mealCreatorBreadcrumb, mealCreatorBreadcrumbHome } from './data/meal-creator.breadcrumb';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Permissions } from 'src/app/shared/enums/permissions.enum';
+import { Role } from 'src/app/shared/enums/permissions.enum';
 
 @Component({
   selector: 'app-meal-creator',
@@ -18,8 +18,8 @@ import { Permissions } from 'src/app/shared/enums/permissions.enum';
 export class MealCreatorComponent implements OnInit {
   breadcrumb = mealCreatorBreadcrumb;
   homeBcrumb = mealCreatorBreadcrumbHome;
-  userPermissions = this.authService.permissions;
-  permissionOpts = Permissions;
+  userRole = this.authService.role;
+  roleOpts = Role;
   canSave = false;
 
   form = new FormGroup({});
@@ -151,7 +151,7 @@ export class MealCreatorComponent implements OnInit {
   }
 
   saveMealGlobal() {
-    if(this.userPermissions === this.permissionOpts.ADMIN) {
+    if(this.userRole === this.roleOpts.ADMIN) {
       delete this.model.ingredientName;
       delete this.model.ingredientPortion;
   

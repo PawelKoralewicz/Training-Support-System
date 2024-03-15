@@ -38,6 +38,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { MultiselectComponent } from './components/formly/multiselect/multiselect.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { PTableArrowDisableDirective } from './directives/ptable-arrow-disable.directive';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { PTableArrowDisableDirective } from './directives/ptable-arrow-disable.d
     MultiSelectModule,
     FormlyModule,    
     AutoCompleteModule,
-    TooltipModule
+    TooltipModule,
+    ConfirmDialogModule
   ], 
   exports: [
     TooltipModule,
@@ -103,7 +105,8 @@ import { PTableArrowDisableDirective } from './directives/ptable-arrow-disable.d
     ContextMenuModule,
     KeyFilterModule,
     AutoCompleteModule,
-    PTableArrowDisableDirective
+    PTableArrowDisableDirective,
+    ConfirmDialogModule
   ]
 })
 export class SharedModule { }

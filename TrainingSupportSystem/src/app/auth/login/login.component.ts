@@ -41,7 +41,7 @@ export class LoginComponent {
         sessionStorage.setItem('userId', res.user.id);
       }
 
-      this.authService.getPermissions().subscribe((res) => this.authService.permissions = res.permissions);
+      this.authService.getRole().subscribe((res) => this.authService.role = res.role.name);
 
       this.router.navigate(['']);
     });

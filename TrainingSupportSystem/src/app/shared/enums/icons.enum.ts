@@ -10,4 +10,6 @@ export enum Icon {
     CUTLERY = 'fa fa-cutlery',
     TRASH = 'pi pi-trash',
     TIMES_CIRCLE = 'pi pi-times-circle',
+    USERS = 'pi pi-users',
+    CHECK = 'pi pi-check',
 }

@@ -1,0 +1,58 @@
+@import "src/assets/theme/variables.scss";
+
+.administration-panel {
+    ::ng-deep {
+        p-table {
+            .p-datatable-thead {
+                tr {
+                    th {
+                        border: $basic-border;
+                        background: $main-theme;
+                        text-align: center;
+                        color: $white-main;
+                        padding: 0.5rem;
+
+                        &:first-of-type {
+                            border-top-left-radius: $basic-radius;
+                        }
+                        
+                        &:last-of-type {
+                            border-top-right-radius: $basic-radius;
+                        }
+                    }
+                }
+            }
+
+
+            .p-datatable-tbody {
+                tr {
+                    background: transparent;
+
+                    td {
+                        text-align: center;
+                        border: $basic-border;
+                        color: $white-main;
+                        padding: 0.5rem;
+
+                        &:last-of-type {
+                            display: flex;
+                            justify-content: space-evenly;
+                        }
+                    }
+
+                    &:last-of-type {
+                        td {
+                            &:first-of-type {
+                                border-bottom-left-radius: $basic-radius;
+                            }
+
+                            &:last-of-type {
+                                border-bottom-right-radius: $basic-radius;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

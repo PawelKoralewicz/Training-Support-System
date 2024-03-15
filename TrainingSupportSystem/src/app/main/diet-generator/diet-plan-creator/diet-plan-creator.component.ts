@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import jsPDF from 'jspdf';
 import { SelectItemGroup } from 'primeng/api';
+import { IIngredients } from '../data/ingredients.interface';
 
 @Component({
   selector: 'app-diet-plan-creator',
@@ -85,7 +87,31 @@ export class DietPlanCreatorComponent {
   }
 
   exportToPDF() {
-    
+    const doc = new jsPDF();
+    let y = 10;
+
+    doc.text(`${this.totalCalories.calories} kcal, C: ${Math.floor(this.totalCalories.carbs)} g, P: ${Math.floor(this.totalCalories.protein)} g, F: ${Math.floor(this.totalCalories.fats)} g`, 10, y);
+    y += 30;
+
+    this.selectedMeals.forEach((meal, mi) => {
+      if(y + 10 >= doc.internal.pageSize.height - 10 || y + meal.ingredients.length * 10 + 20 > doc.internal.pageSize.height) {
+        doc.addPage();
+        y = 10;
+      }
+
+      doc.text(`${mi + 1}. ${meal.mealName}`, 10, y);
+      y += 10;
+
+      doc.text(`${meal.calories} kcal, C: ${Math.round(meal.carbs / 10) * 10} g, P: ${Math.round(meal.protein / 10) * 10} g, F: ${Math.round(meal.fats / 10) * 10} g`, 10, y);
+      y += 10;
+
+      meal.ingredients.forEach((ingredient: IIngredients) => {
+        doc.text(`- ${this.getPortioning(ingredient.ingredientName, ingredient.portionSize)}`, 10, y);
+        y += 10;
+      })
+    })
+
+    doc.save('diet-plan.pdf');
   }
 
 }

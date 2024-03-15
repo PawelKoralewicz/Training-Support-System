@@ -6,6 +6,8 @@ import { ChartsCustomizatorComponent } from './rpe-calculator/charts-customizato
 import { DietGeneratorModule } from './diet-generator/diet-generator.module';
 import { TrainingPlannerModule } from './training-planner/training-planner.module';
 import { ProgressTrackerModule } from './progress-tracker/progress-tracker.module';
+import { AdministrationPanelComponent } from './administration-panel/administration-panel.component';
+import { administrationGuard } from './administration-panel/administration.guard';
 
 const routes: Routes = [
   { path: '', component: MainComponent, children: [
@@ -14,6 +16,8 @@ const routes: Routes = [
     { path: 'dieting', loadChildren: () => import('./diet-generator/diet-generator.module').then(() => DietGeneratorModule) },
     { path: 'training', loadChildren: () => import('./training-planner/training-planner.module').then(() => TrainingPlannerModule) },
     { path: 'progress-tracker', loadChildren: () => import('./progress-tracker/progress-tracker.module').then(() => ProgressTrackerModule) },
+    { path: 'administration-panel', component: AdministrationPanelComponent, canActivate: [administrationGuard] },
+    { path: '**', pathMatch: 'full', redirectTo: 'training' }
   ] 
   }
 ];

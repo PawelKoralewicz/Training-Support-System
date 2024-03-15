@@ -22,6 +22,7 @@
                 <li>Carbs: {{ totalCalories.carbs | number: '1.0-1' }} g</li>
                 <li>Protein: {{ totalCalories.protein | number: '1.0-1' }} g</li>
                 <li>Fats: {{ totalCalories.fats | number: '1.0-1' }} g</li>
+                <li><app-button label="PDF" (click)="exportToPDF()"></app-button></li>
             </ul>
         </div>
         <div class="selected-meals">

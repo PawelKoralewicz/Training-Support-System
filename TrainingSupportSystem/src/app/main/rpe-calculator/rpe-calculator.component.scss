@@ -69,8 +69,15 @@
 
                     .p-datatable-tbody {
                         tr {
-                            background: $main-theme;
                             color: $white-main;
+                            background: transparent;
+                            
+                            td {
+                                &:first-of-type {
+                                    background: $main-theme;
+                                    font-weight: 700;
+                                }
+                            }
 
                             &:last-of-type {
                                 td {

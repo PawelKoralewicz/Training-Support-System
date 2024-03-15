@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   getUserPermissions() {
     if(this.authService.getToken()) {
-      this.authService.getPermissions().subscribe((res) => this.authService.permissions =  res.permissions);
+      this.authService.getRole().subscribe((res) => this.authService.role =  res.role.name);
     }
   }
 }

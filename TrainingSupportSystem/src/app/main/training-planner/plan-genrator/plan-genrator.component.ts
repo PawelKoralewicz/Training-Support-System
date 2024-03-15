@@ -40,8 +40,7 @@ export class PlanGenratorComponent {
     interval(100).pipe(
       takeUntil(repeat),
       switchMap(() => this.trainingPlannerService.generatePlans(filters))
-    ).subscribe(
-      {
+    ).subscribe({
         next: (res) => {
           if(res.data.length) {
             this.plans = res.data.map(plan => plan.attributes);
@@ -58,8 +57,7 @@ export class PlanGenratorComponent {
         complete: () => {
           this.activeStep = "CHOOSER"
         }
-      }
-      )
+      })
   }
 
   nextStep() {

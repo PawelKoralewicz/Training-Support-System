@@ -95,14 +95,6 @@
       "target": "api::users-workout-plan.users-workout-plan",
       "mappedBy": "user"
     },
-    "permissions": {
-      "type": "enumeration",
-      "enum": [
-        "user",
-        "admin"
-      ],
-      "default": "user"
-    },
     "personalInfo": {
       "type": "relation",
       "relation": "oneToOne",

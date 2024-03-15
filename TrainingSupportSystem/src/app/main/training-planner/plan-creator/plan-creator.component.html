@@ -2,9 +2,9 @@
 <div class="plan-creator-container">
   <app-breadcrumb [home]="breadcrumbHome" [model]="breadcrumbModel">
     <div class="action-buttons-save" *ngIf="!editingMode; else updateActionBtn">
-      <app-button-line [label]="userPermissions === permissionOpts.ADMIN ? 'Save for me' : 'Save'" icon="pi pi-save" severity="success" (click)="savePlanPrivate()"></app-button-line>
-      <app-button-line *ngIf="userPermissions === permissionOpts.ADMIN" label="Save for all" icon="pi pi-users" severity="success" (click)="savePlanGlobal()"></app-button-line>
-      <app-button-line *ngIf="userPermissions === permissionOpts.ADMIN && fromPlanGenerator" label="Update for all" icon="pi pi-users" severity="warning" (click)="updatePlanGlobal()"></app-button-line>
+      <app-button-line [label]="userRole === roleOpts.ADMIN ? 'Save for me' : 'Save'" icon="pi pi-save" severity="success" (click)="savePlanPrivate()"></app-button-line>
+      <app-button-line *ngIf="userRole === roleOpts.ADMIN" label="Save for all" icon="pi pi-users" severity="success" (click)="savePlanGlobal()"></app-button-line>
+      <app-button-line *ngIf="userRole === roleOpts.ADMIN && fromPlanGenerator" label="Update for all" icon="pi pi-users" severity="warning" (click)="updatePlanGlobal()"></app-button-line>
     </div>
     <ng-template #updateActionBtn>
       <div class="action-buttons-update">

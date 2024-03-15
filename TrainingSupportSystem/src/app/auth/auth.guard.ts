@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const jwt = sessionStorage.getItem('jwt') || localStorage.getItem('jwt');
 
   if (jwt) {
-    authService.getPermissions().subscribe((res) => authService.permissions = res.permissions);
+    authService.getRole().subscribe((res) => authService.role = res.role.name);
     router.navigate(['']);
     return false;
   } else {

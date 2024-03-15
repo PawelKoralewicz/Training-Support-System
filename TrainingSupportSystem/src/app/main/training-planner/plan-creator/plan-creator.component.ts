@@ -23,7 +23,7 @@ import { IUsersWorkoutPlan } from '../data/interfaces/users-workout-plan-server.
 import { IWeeksPlan } from 'src/app/shared/interfaces/workout-plan.interface';
 import { AuthService } from 'src/app/auth/auth.service';
 import { TrainingPriority } from 'src/app/shared/enums/training-priority.enum';
-import { Permissions } from 'src/app/shared/enums/permissions.enum';
+import { Role } from 'src/app/shared/enums/permissions.enum';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PlanSaverFormComponent } from './plan-saver-form/plan-saver-form.component';
 
@@ -49,11 +49,11 @@ export class PlanCreatorComponent implements OnInit {
   sheetRow = 0;
   breadcrumbHome = homeBreadcrumbPC;
   breadcrumbModel = planCreatorBreadcrumbItems;
-  permissionOpts = Permissions;
+  roleOpts = Role;
   exercises: any[] = [];
   filteredExercises: any[] = [];
 
-  userPermissions = this.authService.permissions;
+  userRole = this.authService.role;
   ref?: DynamicDialogRef;
 
   form = new FormGroup({});
@@ -350,13 +350,8 @@ export class PlanCreatorComponent implements OnInit {
 
   savePlanPrivate() {
     let plan = {
-      // name: 'test',
-      // advancement: WorkoutPlanAdvancement.INTERMEDIATE,
       options: this.model,
       plan: this.tables.plan,
-      // mainGoal: "strength",
-      // focus: "legs",
-      // priority: TrainingPriority.DEADLIFT
     }
 
     this.ref = this.dialogService.open(PlanSaverFormComponent, {});
@@ -372,15 +367,10 @@ export class PlanCreatorComponent implements OnInit {
   }
 
   savePlanGlobal() {
-    if (this.authService.permissions === this.permissionOpts.ADMIN) {
+    if (this.authService.role === this.roleOpts.ADMIN) {
       let plan = {
-        // planName: 'test',
         options: this.model,
-        // advancement: WorkoutPlanAdvancement.INTERMEDIATE,
         plan: this.tables.plan,
-        // mainGoal: "strength",
-        // focus: "legs",
-        // priority: TrainingPriority.DEADLIFT
       }
 
 

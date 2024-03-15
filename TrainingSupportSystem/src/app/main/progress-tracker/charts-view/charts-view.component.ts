@@ -73,6 +73,7 @@ export class ChartsViewComponent {
       }
       )
     })
+    console.log(this.bodyWeights);
   }
 
   getEstimatedMaxes(exercise: IChartsExercisesData) {
@@ -151,6 +152,8 @@ export class ChartsViewComponent {
   setChartData(index: number) {
     const liftData: number[] = [];
     this.chartsData[index].estimatedMaxes.forEach((el: any) => liftData.push(el.esOneRm));
+    const bodyWeight: number[] = [];
+    this.bodyWeights.forEach(el => el.bodyWeight ? bodyWeight.push(el.bodyWeight) : null)
     const volumeData = this.getVolumeData(this.exercises[index]);
 
     this.data = {
@@ -167,7 +170,7 @@ export class ChartsViewComponent {
           type: 'bar',
           label: 'Body weight',
           backgroundColor: 'red',
-          data: this.bodyWeights
+          data: bodyWeight
         }
       ]
     }

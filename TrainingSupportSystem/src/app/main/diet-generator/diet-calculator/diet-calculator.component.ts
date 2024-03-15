@@ -186,7 +186,7 @@ export class DietCalculatorComponent implements OnInit {
           datasets: [
             {
               data: this.macros,
-              backgroundColor: ['blue', 'green', 'red'],
+              backgroundColor: ['rgb(255, 115, 0)', 'rgb(65, 199, 65)', 'rgb(30, 142, 247)'],
             }
           ]
         },

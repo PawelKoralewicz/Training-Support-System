@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-01-28T18:46:14.863Z"
+    "x-generation-date": "2024-03-01T00:37:04.840Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2167,13 +2167,6 @@
                           }
                         }
                       },
-                      "permissions": {
-                        "type": "string",
-                        "enum": [
-                          "user",
-                          "admin"
-                        ]
-                      },
                       "personalInfo": {
                         "type": "object",
                         "properties": {
@@ -3307,13 +3300,6 @@
                             }
                           }
                         }
-                      },
-                      "permissions": {
-                        "type": "string",
-                        "enum": [
-                          "user",
-                          "admin"
-                        ]
                       },
                       "personalInfo": {
                         "type": "object",
@@ -4500,13 +4486,6 @@
                           }
                         }
                       },
-                      "permissions": {
-                        "type": "string",
-                        "enum": [
-                          "user",
-                          "admin"
-                        ]
-                      },
                       "personalInfo": {
                         "type": "object",
                         "properties": {
@@ -5673,13 +5652,6 @@
                             }
                           }
                         }
-                      },
-                      "permissions": {
-                        "type": "string",
-                        "enum": [
-                          "user",
-                          "admin"
-                        ]
                       },
                       "personalInfo": {
                         "type": "object",

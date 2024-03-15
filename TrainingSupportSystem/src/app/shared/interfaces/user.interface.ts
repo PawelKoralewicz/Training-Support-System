@@ -1,5 +1,5 @@
 import { IUsersWorkoutPlan } from "src/app/main/training-planner/data/interfaces/users-workout-plan-server.interface";
-import { Permissions } from "../enums/permissions.enum";
+import { Role } from "../enums/permissions.enum";
 
 export interface IUser {
     id: number;
@@ -9,7 +9,11 @@ export interface IUser {
     username: string;
     gender: string;
     rpeCharts: any;
-    permissions: Permissions;
+    role: {
+        id: number;
+        name: Role;
+        description: string;
+    };
     workoutPlans: IUsersWorkoutPlan[];
     personalInfo: IPersonalInfo;
 }

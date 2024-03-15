@@ -677,8 +677,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::users-workout-plan.users-workout-plan'
     >;
-    permissions: Attribute.Enumeration<['user', 'admin']> &
-      Attribute.DefaultTo<'user'>;
     personalInfo: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',

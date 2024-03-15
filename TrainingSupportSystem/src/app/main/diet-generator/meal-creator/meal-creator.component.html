@@ -1,8 +1,8 @@
 <div class="meal-creator-container">
   <app-breadcrumb [home]="homeBcrumb" [model]="breadcrumb">
     <div class="save-buttons">
-      <app-button-line [label]="userPermissions === permissionOpts.ADMIN ? 'Save for me' : 'Save'" icon="pi pi-save" (click)="canSave ? saveMealPrivate() : null" [disabled]="!canSave"></app-button-line>
-      <app-button-line label="Save for all" icon="pi pi-users" *ngIf="userPermissions === permissionOpts.ADMIN" (click)="canSave ? saveMealGlobal() : null" [disabled]="!canSave"></app-button-line>
+      <app-button-line [label]="userRole === roleOpts.ADMIN ? 'Save for me' : 'Save'" icon="pi pi-save" (click)="canSave ? saveMealPrivate() : null" [disabled]="!canSave"></app-button-line>
+      <app-button-line label="Save for all" icon="pi pi-users" *ngIf="userRole === roleOpts.ADMIN" (click)="canSave ? saveMealGlobal() : null" [disabled]="!canSave"></app-button-line>
     </div>
   </app-breadcrumb>
   <form>

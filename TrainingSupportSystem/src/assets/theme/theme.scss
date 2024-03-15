@@ -10,6 +10,8 @@
 * {
     font-family: 'Orbitron';
     font-size: 14px;
+    scrollbar-width: thin;
+    scrollbar-color: $main-color transparent;
 }
 
 body {
@@ -29,3 +31,4 @@ label {
     width: max-content !important;
     max-width: 350px;
 }
+

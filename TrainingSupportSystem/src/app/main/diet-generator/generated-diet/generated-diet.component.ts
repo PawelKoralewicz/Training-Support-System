@@ -135,6 +135,7 @@ export class GeneratedDietComponent implements OnInit {
     this.dietPlan[mealIndex].forEach(dish => this.calories[mealIndex] += dish.calories);
     this.dietPlan[mealIndex] = [this.selectMeal(mealIndex, dishNumber)];
     this.checkIfAnyCaloriesLeft();
+    this.countDietMacros();
   }
 
   supplyDietPlan(meals: Meal[], caloriesLimit: number, mealIndex: number): Meal[] {
@@ -168,7 +169,6 @@ export class GeneratedDietComponent implements OnInit {
         this.mergeDuplicateMeals(this.dietPlan[index]);
       }
     })
-    console.log(this.dietPlan);
   }
 
   mergeDuplicateMeals(meals: Meal[]) {
@@ -206,6 +206,11 @@ export class GeneratedDietComponent implements OnInit {
   }
 
   countDietMacros() {
+    this.dietMacros.carbs = 0;
+    this.dietMacros.protein = 0;
+    this.dietMacros.fats = 0;
+    this.dietMacros.kcal = 0;
+
     this.dietPlan.forEach(el => {
       el.forEach(dish => {
         this.dietMacros.kcal += dish.calories;
