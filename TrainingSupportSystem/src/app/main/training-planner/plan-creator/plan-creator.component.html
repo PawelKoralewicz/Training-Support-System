@@ -79,7 +79,7 @@
                     <ng-container [ngSwitch]="col.field">
                         <p-cellEditor *ngIf="col.field !== 'setNumber'">
                             <ng-template pTemplate="input">
-                                    <p-inputNumber pTableArrowDisable *ngSwitchCase="'weight'" [(ngModel)]="set[col.field]"></p-inputNumber>                                
+                                    <p-inputNumber pTableArrowDisable *ngSwitchCase="'weight'" [(ngModel)]="set[col.field]" [minFractionDigits]="0" [maxFractionDigits]="2"></p-inputNumber>                                
                                     <p-inputNumber pTableArrowDisable *ngSwitchCase="'reps'" [(ngModel)]="set[col.field]"></p-inputNumber>
                                     <p-inputNumber pTableArrowDisable *ngSwitchCase="'rest'" suffix="s" [(ngModel)]="set[col.field]"></p-inputNumber>
                                     <p-inputNumber pTableArrowDisable *ngSwitchCase="'oneRmPercent'" suffix="%" [(ngModel)]="set[col.field]"></p-inputNumber>

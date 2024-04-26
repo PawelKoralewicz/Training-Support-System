@@ -41,7 +41,6 @@ export class DietPlanCreatorComponent {
     this.meals[1].items = this.activatedRoute.snapshot.data['dinners'];
     this.meals[2].items = this.activatedRoute.snapshot.data['suppers'];
     this.groceries = this.activatedRoute.snapshot.data['groceries'];
-    console.log(this.meals[0].items);
   }
 
   addMeal() {

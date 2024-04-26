@@ -24,7 +24,6 @@
 .p-inputtext {
     padding: 3px 5px;
     width: 100%;
-    color: $white-main;
 
     &:focus {
         box-shadow: none !important;
@@ -40,6 +39,12 @@
     &[type=number] {
         -moz-appearance: textfield;
         appearance: textfield;
+    }
+}
+
+p-inputNumber:not(.color-dark), app-inputtext:not(.color-dark) {
+    .p-inputtext:not(.color-dark) {
+        color: $white-main;
     }
 }
 

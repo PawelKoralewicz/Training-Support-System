@@ -142,7 +142,8 @@ export class DietGeneratorFormComponent implements OnInit {
             // suffix: ' kcal',
             label: 'Calories',
             required: true,
-            min: 1200
+            min: 1200,
+            class: 'color-dark'
           }
         },
         {
@@ -193,6 +194,7 @@ export class DietGeneratorFormComponent implements OnInit {
         min: 1,
         max: 7,
         showButtons: true,
+        class: 'color-dark'
       }
     },
     {

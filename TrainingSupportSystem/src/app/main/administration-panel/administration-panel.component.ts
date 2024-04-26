@@ -40,7 +40,7 @@ export class AdministrationPanelComponent implements OnInit {
   }
 
   saveChanges(user: IUser) {
-    this.administrationPanelService.updateUser(user).subscribe(res => console.log(res));
+    this.administrationPanelService.updateUser(user).subscribe();
   }
 
   deleteUser(user: IUser) {

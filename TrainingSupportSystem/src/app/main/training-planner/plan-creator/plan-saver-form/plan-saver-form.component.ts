@@ -47,6 +47,7 @@ export class PlanSaverFormComponent implements OnInit {
       props: {
         label: 'Plan name',
         required: true,
+        class: 'color-dark'
       }
     },
     {

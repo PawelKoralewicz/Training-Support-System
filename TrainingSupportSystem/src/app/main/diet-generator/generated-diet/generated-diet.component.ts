@@ -40,7 +40,6 @@ export class GeneratedDietComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.groceries = this.activatedRoute.snapshot.data['groceries'];
-    console.log(this.groceries);
     this.initialize();
   }
 
@@ -65,7 +64,6 @@ export class GeneratedDietComponent implements OnInit {
       })
       this.userPreferences = history.state;
     }
-    console.log(this.userPreferences);
   }
 
   createMealsList() {

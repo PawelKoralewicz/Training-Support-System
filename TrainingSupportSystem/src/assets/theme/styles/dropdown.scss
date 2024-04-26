@@ -2,6 +2,11 @@ p-dropdown {
     .p-dropdown {
         width: 100%;
         background: transparent;
+        color: $color-white;
+
+        .p-dropdown-label {
+            color: $color-white;
+        }
         
         &.p-focus {
             box-shadow: none !important;

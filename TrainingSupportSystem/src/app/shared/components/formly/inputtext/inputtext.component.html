@@ -3,6 +3,6 @@
         <i [class]="to['icon']" *ngIf="to['icon']"></i>
         <i *ngIf="to['password']" class="pi" [ngClass]="{'pi-eye': !showPassword, 'pi-eye-slash': showPassword }" (click)="passwordVisibilityToggle()"></i>
         <i class="pi pi-times" *ngIf="formControl.value && !to['password']" (click)="clearInput()"></i>
-        <input pInputText [type]="to.type ? to.type : 'text'" [placeholder]="to.placeholder" [formControl]="formControl" [email]="to.type === 'email'">
+        <input pInputText [type]="to.type ? to.type : 'text'" [placeholder]="to.placeholder" [formControl]="formControl" [email]="to.type === 'email'" [class]="to['class'] ? to['class'] : ''">
     </span>
 </div>

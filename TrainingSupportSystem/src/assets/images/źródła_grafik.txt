@@ -1,0 +1,6 @@
+Źródła grafik wykorzystanych w aplikacji:
+1. auth-graphic.jpg, https://unsplash.com/photos/a-man-is-doing-a-pull-up-in-a-gym-qo1pyCD02t4,
+2. calorie-calculator.png, wygenerowane przez sztuczną inteligencję Microsoft Bing, https://www.bing.com/images/create?toWww=1&redig=37C7FC8143754ED49796A3A4E8243DF5
+3. main-background.jpg, https://downloadscdn5.freepik.com/download_vector/jpg/1/1053/0/921/921172_OC1Y8F0.jpg?token=exp=1706044295~hmac=ee8a7de256a4bb04f4fdeca3d32e6645
+
+Wszystkie pliki .svg pochodzą z repozytorium wektorów o otwartej licencji - https://www.svgrepo.com/ 

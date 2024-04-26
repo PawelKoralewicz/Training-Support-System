@@ -73,7 +73,6 @@ export class ChartsViewComponent {
       }
       )
     })
-    console.log(this.bodyWeights);
   }
 
   getEstimatedMaxes(exercise: IChartsExercisesData) {
