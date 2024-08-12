@@ -25,6 +25,6 @@ System umożliwia:
 * Zarządzanie użytkownikami (tylko administratorzy)
 
 ## [EN] Adding data to database | [PL] Dodanie danych do bazy
-cd server/training-support-system
-npm run strapi import -- -f my-strapi-export.tar.gz.enc
+cd server/training-support-system  
+npm run strapi import -- -f my-strapi-export.tar.gz.enc  
 key: 123
