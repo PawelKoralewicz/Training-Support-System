@@ -1,8 +1,8 @@
 # Training Support System
 
 ## [EN]
-A strength training support system developed as part of an engineering thesis.
-The system was built using Angular 16 (front-end) and Strapi (back-end).
+A strength training support system developed as part of an engineering thesis.  
+The system was built using Angular 16 (front-end) and Strapi (back-end).  
 The system offers the following features:
 * Creation and generation of workout plans
 * Creation and generation of nutrition plans
@@ -13,8 +13,8 @@ The system offers the following features:
 * User management (administrators only)
 
 ## [PL]
-System wspierający trening siłowy wykonany w ramach pracy inżynierskiej.
-System został wykonany przy użyciu Angular 16 (front-end) i Strapi (back-end).
+System wspierający trening siłowy wykonany w ramach pracy inżynierskiej.  
+System został wykonany przy użyciu Angular 16 (front-end) i Strapi (back-end).  
 System umożliwia:
 * Tworzenie i generowanie planów treningowych
 * Tworzenie i generowanie planów żywieniowych
