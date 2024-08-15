@@ -37,3 +37,12 @@ key: 123
 | ----- | ----------- | --------- |
 | User | An entity interacting with the system, capable of using strength and caloric demand calculators, creating and generating workout and meal plans, and tracking workout progress, provided successful authorization. | All, except creating workout plan templates for generation, creating meals, and managing user accounts. |
 | Administrator | An entity similar to a user, with additional privileges such as creating workout plan templates, creating meals, and managing user accounts. | All |
+
+# System presentation
+This section will present the appearance and functionality of all system segments from the administrator's perspective.  
+
+## Login and registration
+![Login and registration screenshot](https://github.com/user-attachments/assets/b696bf06-b136-43f4-88bd-a83345e72283)
+*Image 1: Registration (on the left) and login (on the right) screen.*  
+
+Image 1 shows the registration and login screen. If the user is unauthorized, they are automatically redirected to the login screen, from where they can also proceed to the registration via the hyperlink marked as number 13 and return to the login screen using the link marked as number 8. All fields (1-6) are required to create an account in the system; after the form is correctly filled out, the submit button (number 7) is unlocked. It is verified whether an account with the given username (number 4) and email (number 5) already exists. To log in, the user must provide the username or email address used during registration in the field marked as number 9, along with the password (number 10). Optionally, the user can choose to stay logged in (number 11), ensuring that they will not be logged out after closing the browser tab. After entering the required data, the button to submit the form (number 12) is unlocked. Upon successful authorization, the user is redirected to the training module view.
