@@ -39,7 +39,7 @@ key: 123
 | Administrator | An entity similar to a user, with additional privileges such as creating workout plan templates, creating meals, and managing user accounts. | All |
 
 # System presentation
-This section will present the appearance and functionality of all system segments from the administrator's perspective.  
+This section will present the appearance and functionality of all system segments.
 
 ## Login and registration
 ![Login and registration screenshot](https://github.com/user-attachments/assets/4b4b6049-580e-41e9-8c60-3b51b8aabcd3)  
