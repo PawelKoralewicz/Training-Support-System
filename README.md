@@ -30,4 +30,10 @@ npm run strapi import -- -f my-strapi-export.tar.gz.enc
 key: 123
 
 ## Use Case Diagram
-![image](https://github.com/user-attachments/assets/40c08d57-9ad2-43e0-9c6f-32e05b796144)
+![image](https://github.com/user-attachments/assets/40c08d57-9ad2-43e0-9c6f-32e05b796144)  
+
+[Table] Actors description  
+| Actor | Description | Use cases |
+| ----- | ----------- | --------- |
+| User | An entity interacting with the system, capable of using strength and caloric demand calculators, creating and generating workout and meal plans, and tracking workout progress, provided successful authorization. | All, except creating workout plan templates for generation, creating meals, and managing user accounts. |
+| Administrator | An entity similar to a user, with additional privileges such as creating workout plan templates, creating meals, and managing user accounts. | All |
