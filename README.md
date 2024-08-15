@@ -28,3 +28,6 @@ System umożliwia:
 cd server/training-support-system  
 npm run strapi import -- -f my-strapi-export.tar.gz.enc  
 key: 123
+
+## Use Case Diagram
+![image](https://github.com/user-attachments/assets/40c08d57-9ad2-43e0-9c6f-32e05b796144)
