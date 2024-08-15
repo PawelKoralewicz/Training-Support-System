@@ -42,8 +42,20 @@ key: 123
 This section will present the appearance and functionality of all system segments.
 
 ## Login and registration
-![Login and registration screenshot](https://github.com/user-attachments/assets/4b4b6049-580e-41e9-8c60-3b51b8aabcd3)  
-
+![Image 1: Login and registration views](https://github.com/user-attachments/assets/4b4b6049-580e-41e9-8c60-3b51b8aabcd3)  
 *Image 1: Registration (on the left) and login (on the right) screen.*  
 
-Image 1 shows the registration and login screen. If the user is unauthorized, they are automatically redirected to the login screen, from where they can also proceed to the registration via the hyperlink marked as number 13 and return to the login screen using the link marked as number 8. All fields (1-6) are required to create an account in the system; after the form is correctly filled out, the submit button (number 7) is unlocked. It is verified whether an account with the given username (number 4) and email (number 5) already exists. To log in, the user must provide the username or email address used during registration in the field marked as number 9, along with the password (number 10). Optionally, the user can choose to stay logged in (number 11), ensuring that they will not be logged out after closing the browser tab. After entering the required data, the button to submit the form (number 12) is unlocked. Upon successful authorization, the user is redirected to the training module view.
+*Image 1* shows the registration and login screen. If the user is unauthorized, they are automatically redirected to the login screen, from where they can also proceed to the registration via the hyperlink marked as number 13 and return to the login screen using the link marked as number 8. All fields (1-6) are required to create an account in the system; after the form is correctly filled out, the submit button (number 7) is unlocked. It is verified whether an account with the given username (number 4) and email (number 5) already exists. To log in, the user must provide the username or email address used during registration in the field marked as number 9, along with the password (number 10). Optionally, the user can choose to stay logged in (number 11), ensuring that they will not be logged out after closing the browser tab. After entering the required data, the button to submit the form (number 12) is unlocked. Upon successful authorization, the user is redirected to the training module view.
+
+## Strength calculator and RPE scale customization
+
+![Image 2: Strength calculator view](https://github.com/user-attachments/assets/a3d34e5f-d284-449e-bac6-6a75aa2fa774)  
+*Image 2: Strength calculator view*  
+
+*Image 2* shows the view of the one-rep max calculator. This panel allows the user to estimate their maximum strength result or determine the approximate weights they should use during training to meet their workout goals. To calculate this, the user needs to input the weight (excluding the unit) in the field marked as number 2, the number of repetitions (number 3), and the RPE value (number 4) achieved during the exercise, and then confirm with the button (number 6). The results will be displayed in the table (number 7), where the first column contains consecutive RPE values from 10 to 5 with a step of 0.5, and the first row shows the number of repetitions from 1 to 15. The inner cells represent the estimated weight with which the user should be able to perform the exercise. The exercise selection is made in the field marked as number 5, with options including squat, bench press, and deadlift. Based on this selection, a specific RPE scale will be used, which can be customized by navigating to the view shown in *Image 3* using the button marked as number 1.  
+  
+![Image 3: RPE scale personalization view](https://github.com/user-attachments/assets/e04d3c2f-787b-446b-baac-8ba4456c53f2)  
+*Image 3: RPE scale personalization view*  
+
+*Image 3* shows the view of the RPE scale customization. The default scale is calculated for 4 repetitions at 85% of the maximum weight and 8 repetitions at 70%. In the fields marked as numbers 2 and 3, the user can enter these repetition counts for 85% and 70% of the maximum weight, respectively. To calculate a new scale for the given exercise, both fields (2 and 3) must be filled out. Otherwise, upon submitting the form with the button (number 4), the user will be informed of an error and the need to fill out the fields correctly. The buttons for switching the tab containing the scale table (number 6) for the given exercise are marked as number 5. After making changes, the user can save the new scales, which will be used in the strength calculator and progress tracking module.
+
