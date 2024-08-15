@@ -34,6 +34,5 @@ key: 123
 
 [Table] Actors description  
 | Actor | Description | Use cases |
-| ----- | ----------- | --------- |
 | User | An entity interacting with the system, capable of using strength and caloric demand calculators, creating and generating workout and meal plans, and tracking workout progress, provided successful authorization. | All, except creating workout plan templates for generation, creating meals, and managing user accounts. |
 | Administrator | An entity similar to a user, with additional privileges such as creating workout plan templates, creating meals, and managing user accounts. | All |
