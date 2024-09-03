@@ -7,7 +7,7 @@ The system offers the following features:
 * Creation and generation of workout plans
 * Creation and generation of nutrition plans
 * Creation of custom recipes
-* Calculation of caloric needs
+* Calculation of caloric demand
 * Calculation of strength performance based on the RPE scale with customization options
 * Tracking training progress with charts
 * User management (administrators only)
